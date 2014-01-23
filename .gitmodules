@@ -1,0 +1,24 @@
+[submodule "chef/cookbooks/sudo"]
+	path = chef/cookbooks/sudo
+	url = https://github.com/opscode-cookbooks/sudo
+[submodule "chef/cookbooks/build-essential"]
+	path = chef/cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential
+[submodule "chef/cookbooks/rackspace-user"]
+	path = chef/cookbooks/rackspace-user
+	url = https://github.com/rackspace-cookbooks/rackspace-user
+[submodule "chef/cookbooks/cron"]
+	path = chef/cookbooks/cron
+	url = https://github.com/opscode-cookbooks/cron
+[submodule "chef/cookbooks/logrotate"]
+	path = chef/cookbooks/logrotate
+	url = https://github.com/opscode-cookbooks/logrotate
+[submodule "chef/cookbooks/apache2"]
+	path = chef/cookbooks/apache2
+	url = https://github.com/opscode-cookbooks/apache2
+[submodule "chef/cookbooks/iptables"]
+	path = chef/cookbooks/iptables
+	url = https://github.com/opscode-cookbooks/iptables
+[submodule "chef/cookbooks/sysctl"]
+	path = chef/cookbooks/sysctl
+	url = https://github.com/opscode-cookbooks/sysctl
