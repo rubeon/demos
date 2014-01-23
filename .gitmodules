@@ -19,6 +19,3 @@
 [submodule "chef/cookbooks/iptables"]
 	path = chef/cookbooks/iptables
 	url = https://github.com/opscode-cookbooks/iptables
-[submodule "chef/cookbooks/sysctl"]
-	path = chef/cookbooks/sysctl
-	url = https://github.com/opscode-cookbooks/sysctl
