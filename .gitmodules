@@ -19,3 +19,18 @@
 [submodule "chef/cookbooks/iptables"]
 	path = chef/cookbooks/iptables
 	url = https://github.com/opscode-cookbooks/iptables
+[submodule "chef/cookbooks/sysctl"]
+	path = chef/cookbooks/sysctl
+	url = https://github.com/onehealth-cookbooks/sysctl
+[submodule "chef/cookbooks/java"]
+	path = chef/cookbooks/java
+	url = https://github.com/opscode-cookbooks/java
+[submodule "chef/cookbooks/mysql"]
+	path = chef/cookbooks/mysql
+	url = https://github.com/opscode-cookbooks/mysql
+[submodule "chef/cookbooks/openssl"]
+	path = chef/cookbooks/openssl
+	url = https://github.com/opscode-cookbooks/openssl
+[submodule "chef/cookbooks/users"]
+	path = chef/cookbooks/users
+	url = https://github.com/opscode-cookbooks/users
