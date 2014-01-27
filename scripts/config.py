@@ -26,16 +26,20 @@ server_flavor = "performance1-1"
 server_build_check_interval = 30
 server_build_check_attempts = 10
 server_ssh_keypair = "sri-key"
+server_health_url = "/"
+server_health_url_digest = "b0e7827137c2f936235e79ccce694d480786e744"
 
 clb_name = "one.example.com"
 clb_port = 80
 clb_protcol = "HTTP"
 clb_node_port = 80
-clb_build_check_interval = 10
-clb_build_check_attempts = 30
+clb_limit_sleep = 10
+clb_build_check_interval = 30
+clb_build_check_attempts = 10
 
 chef_roles = "'role[base],role[web]'"
 chef_env = "dev"
 chef_ssh_user = "root"
+chef_log_dir = "/home/sri/log/knife"
 logobj = open("/home/sri/log/spinone.log", "a+")
 print_to = logobj
