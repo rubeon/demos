@@ -1,11 +1,11 @@
-maven_config CHANGELOG
-======================
+sudo_config CHANGELOG
+=====================
 
-This file is used to list changes made in each version of the maven_config cookbook.
+This file is used to list changes made in each version of the sudo_config cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of maven_config
+- [your_name] - Initial release of sudo_config
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
