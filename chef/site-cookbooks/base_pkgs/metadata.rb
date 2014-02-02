@@ -1,6 +1,6 @@
 name             'base_pkgs'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       ''
+maintainer_email ''
 license          'All rights reserved'
 description      'Installs/Configures base_pkgs'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
