@@ -19,12 +19,16 @@
 
 
 include_recipe "remove_validation"
+
 include_recipe "iptables::default"
+
 include_recipe "base_pkgs::default"
 
 include_recipe "motd::default"
+
 include_recipe "sudo_config"
 include_recipe "sudo"
+
 include_recipe "users::sysadmins"
 
 include_recipe "sshd::default"
