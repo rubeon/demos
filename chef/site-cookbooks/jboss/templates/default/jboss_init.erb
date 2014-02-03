@@ -25,7 +25,7 @@ fi
 # Set defaults.
 
 export JAVA_HOME=<%= node['jboss']['java_home'] %>
-export JBOSS_HOME=<%= node['jboss']['home'] + "/" + node['jboss']['path'] %>
+export JBOSS_HOME=<%= node['jboss']['home'] + "/" + node['jboss']['instance'] %>
 export JBOSS_USER=<%= node['jboss']['user'] %>
 JAVAPTH=${JAVAPTH:-"$JAVA_HOME/bin/java"}
 export PATH=$PATH:$JAVAPTH

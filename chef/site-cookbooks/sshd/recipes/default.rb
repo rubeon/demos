@@ -1,4 +1,4 @@
-#
+Contri#
 # Cookbook Name:: sshd
 # Recipe:: default
 #
@@ -19,7 +19,7 @@ template "/etc/ssh/sshd_config" do
     :banner => node['sshd']['banner'],
     :permit_root => node['sshd']['permit_root'],
     :sftp_subsystem => sftp_subsystem
-)
+    )
 end
 
 template "/etc/issue.net" do

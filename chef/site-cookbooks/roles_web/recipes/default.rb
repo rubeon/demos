@@ -17,10 +17,7 @@
 # limitations under the License.
 #
 
-#node['web']['database_server'] = '10.76.34.34'
-#node['web']['nfs_server']      = '10.76.34.34'
-#node['web']['msg_q']      = 'https://ord.queues.api.rackspacecloud.com/v1/queues/devq'
-
-include_recipe "apache2_config"
 include_recipe "php"
+include_recipe "apache2_config"
+include_recipe "php_app"
 

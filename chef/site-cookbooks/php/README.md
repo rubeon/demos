@@ -1,6 +1,6 @@
 php Cookbook
 =======================
-Install php
+Install php and few modules
 
 
 Requirements

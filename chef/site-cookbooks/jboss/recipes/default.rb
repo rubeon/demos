@@ -61,7 +61,7 @@ bash 'extract_module' do
 end
 
 
-link node['jboss']['home'] + "/" + node['jboss']['path'] do
+link node['jboss']['home'] + "/" + node['jboss']['instance'] do
   to node['jboss']['home'] + "/" + node['jboss']['tar_folder']
 end
 
@@ -77,40 +77,15 @@ end
 
 #### Create the standalone configuration and script.
 
-template node['jboss']['home'] + "/" + node['jboss']['path'] + "/standalone/configuration/standalone.conf" do
+template node['jboss']['home'] + "/" + node['jboss']['instance'] + "/standalone/configuration/standalone.conf" do
   source 'standalone_conf.erb'
   owner node['jboss']['user']
 end
 
-template node['jboss']['home'] + "/" + node['jboss']['path'] + "/bin/standalone.sh" do
+template node['jboss']['home'] + "/" + node['jboss']['instance'] + "/bin/standalone.sh" do
   source 'standalone_sh.erb'
   owner node['jboss']['user']
   mode 00755
 end
 
-#### Deploy apps
-
-remote_file node['jboss']['home'] + "/" + node['jboss']['webapps_filename']  do
-    action :create_if_missing
-    source  node['jboss']['webapps_url']
-end
-
-extract_path = node['jboss']['home'] +  "/" + node['jboss']['path'] + "/"  +  node['jboss']['webapps_dir']
-src_filename  = node['jboss']['home'] + "/" + node['jboss']['webapps_filename']
-jboss_user = node['jboss']['user']
-jboss_group  = node['jboss']['group']
-jboss_home  = node['jboss']['home']
-
-bash 'extract_module' do
-  code <<-EOH
-    mkdir -p #{extract_path}
-    tar xzf #{src_filename} -C #{extract_path}
-    chown -R #{jboss_group}:#{jboss_group} #{jboss_home}
-    EOH
-end
-#### Start service
-service "jboss" do
-  service_name "jboss"
-  action [ :enable, :start ]
-end
 

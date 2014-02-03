@@ -17,18 +17,11 @@
 # limitations under the License.
 #
 
-case node["platform"]
-        when "redhat", "centos", "scientific", "fedora"
-            package "php-pecl-memcache" do
-                action :install
-            end
-            package "php-mysql" do
-                action :install
-            end
+package "php" do
+    action :install
+end
 
-        when "ubuntu"
-            package "php-mysql" do
-                action :install
-            end
+package "php-mysql" do
+    action :install
 end
 

@@ -1,4 +1,4 @@
-role_base Cookbook
+roles_base Cookbook
 =======================
 
 Role book for the base role

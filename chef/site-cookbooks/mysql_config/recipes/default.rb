@@ -17,13 +17,52 @@
 # limitations under the License.
 #
 
+passwords = Chef::EncryptedDataBagItem.load("config", "passwords")
 node.override['mysql']['port'] = '3306'
 node.override['mysql']['data_dir'] = '/var/lib/mysql'
-node.override['mysql']['server_root_password'] = 'helloworld'
+node.override['mysql']['server_root_password'] = passwords["mysql_root"]
 node.override['mysql']['remove_anonymous_users'] = 'yes'
 node.override['mysql']['remove_test_database'] = 'yes'
 
 include_recipe "mysql::server"
 
+# configure a DB
+db_remote_url="http://ca05e8171724524c805e-f85013b2b105db9295d244236b43548b.r11.cf3.rackcdn.com/world_innodb.sql"
+db_remote_filename="world_innodb.sql"
+db_download_location="/tmp"
+local_db_file = db_download_location + "/" + db_remote_filename
+
+
+remote_file local_db_file do
+  action :create_if_missing
+  source db_remote_url
+end
+
+mysql_host = 'localhost'
+mysql_username = 'root'
+mysql_password =   passwords["mysql_root"]
+mysql_app_password =   passwords["mysql_app"]
+mysql_app_db_name = "world"
+
+
+execute "mysql_create_db" do
+    command "mysql -u#{mysql_username} -p#{mysql_password}  -e 'create database if not exists #{mysql_app_db_name}'"
+end
+
+execute "mysql_load_db" do
+    command "mysql -u#{mysql_username} -p#{mysql_password} #{mysql_app_db_name} < #{local_db_file}"
+end
+
+execute "mysql_create_app_user_pwd" do
+    command "mysql -u#{mysql_username} -p#{mysql_password} -e \"set password for 'app'@'%' = PASSWORD('#{mysql_app_password}') \""
+end
+
+
+execute "mysql_create_app_user_grants" do
+    command "mysql -u#{mysql_username} -p#{mysql_password} -e \"GRANT ALL on #{mysql_app_db_name}.* to 'app'@'%' \""
+end
+
+
+iptables_rule "port_mysql"
 
 

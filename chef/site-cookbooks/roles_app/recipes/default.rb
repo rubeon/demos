@@ -20,3 +20,4 @@
 #
 include_recipe "java_config"
 include_recipe "jboss"
+include_recipe "jboss_app"
