@@ -2,8 +2,6 @@
 # Cookbook Name:: sshd
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
-#
 #
 
 template "/etc/ssh/sshd_config" do
@@ -29,14 +27,9 @@ template "/etc/issue.net" do
 end
 
 service "sshd" do
-    case node["platform"]
-        when "redhat", "centos", "scientific", "fedora", "amazon"
-            service_name "sshd"
-        when "debian", "ubuntu", "suse"
-            service_name "ssh"
-    end
     supports :restart => true
     action [ :enable, :restart ]
 end
+
 
 iptables_rule "port_sshd"
