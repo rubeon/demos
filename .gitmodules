@@ -34,12 +34,9 @@
 [submodule "chef/cookbooks/users"]
 	path = chef/cookbooks/users
 	url = https://github.com/opscode-cookbooks/users
-[submodule "chef/cookbooks/database"]
-	path = chef/cookbooks/database
-	url = https://github.com/opscode-cookbooks/database
-[submodule "chef/cookbooks/postgresql"]
-	path = chef/cookbooks/postgresql
-	url = https://github.com/hw-cookbooks/postgresql
 [submodule "chef/cookbooks/apt"]
 	path = chef/cookbooks/apt
 	url = https://github.com/opscode-cookbooks/apt
+[submodule "chef/cookbooks/partial_search"]
+	path = chef/cookbooks/partial_search
+	url = https://github.com/opscode-cookbooks/partial_search
