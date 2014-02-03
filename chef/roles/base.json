@@ -8,9 +8,8 @@
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[roles_cookbook::base]"
+    "recipe[roles_base::default]"
   ],
   "env_run_lists": {
   }
 }
-
