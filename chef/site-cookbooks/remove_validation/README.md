@@ -4,7 +4,7 @@ Remove chef-validator key
 
 Requirements
 ------------
-Opscode's java cookbook
+None
 
 
 Attributes
