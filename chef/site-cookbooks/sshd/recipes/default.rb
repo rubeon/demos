@@ -1,4 +1,4 @@
-Contri#
+#
 # Cookbook Name:: sshd
 # Recipe:: default
 #
