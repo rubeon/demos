@@ -26,8 +26,8 @@ server_flavor = "performance1-1"
 server_build_check_interval = 30
 server_build_check_attempts = 10
 server_ssh_keypair = "sri-key"
-server_health_url = "/"
-server_health_url_digest = "b0e7827137c2f936235e79ccce694d480786e744"
+server_health_url = "/health-check.php"
+server_health_url_digest = "6783deae6fb363c7bd7fc81565e5c3aad7ccdb34"
 
 clb_name = "one.example.com"
 clb_port = 80
@@ -42,4 +42,5 @@ chef_env = "dev"
 chef_ssh_user = "root"
 chef_log_dir = "/home/sri/log/knife"
 logobj = open("/home/sri/log/spinone.log", "a+")
-print_to = logobj
+print_to = sys.stdout
+#print_to = logobj

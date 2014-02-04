@@ -105,6 +105,9 @@ else:
                       "INFO",
                       config.print_to)
 
+        utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Environment =", config.chef_env,"Roles =",config.chef_roles]),
+                      "INFO", config.print_to)
+
         # Now we bootstrap with knife
 
         knife_log = "".join([config.chef_log_dir , "/" , srv.name , ".log"])
@@ -119,6 +122,8 @@ else:
                    "2>" + knife_log]
 
         os.system(" ".join(cmdargs))
+        utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Complete"]),
+                      "INFO", config.print_to)
 
         url = "http://" + srv.accessIPv4 + config.server_health_url
         urlobj = urllib2.urlopen(url,timeout = 5 )
