@@ -212,7 +212,7 @@ else:
                                                    verbose=False)
                                         lb.add_nodes([node])
 
-                                    except pyrax.exceptions.OverLimit,e:
+                                    except (pyrax.exceptions.OverLimit,pyrax.exceptions.ClientException) as e:
                                         time.sleep(config.clb_limit_sleep)
                                         continue
                                         attempts = attempts - 1
