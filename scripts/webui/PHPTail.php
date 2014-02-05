@@ -234,7 +234,6 @@ class PHPTail {
 			</head> 
 			<body>
 				<div class="float">
-					<button id="grepKeyword">Settings</button>
 					<span>Tailing file: <?php echo $this->log; ?></span>
 				</div>
 				<div id="results">
