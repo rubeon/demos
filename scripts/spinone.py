@@ -124,109 +124,113 @@ else:
         utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Complete"]),
                       "INFO", config.print_to)
 
-        url = "http://" + srv.accessIPv4 + config.server_health_url
-        urlobj = urllib2.urlopen(url,timeout = 5 )
-        urldata = urlobj.read()
-        sha1 = hashlib.sha1()
-        sha1.update(urldata)
-        if sha1.hexdigest() != config.server_health_url_digest:
-            utils.log_msg(" ".join([server_log_id, "Health test failed.Deleting cloud server"]),
-                          "ERROR", config.print_to)
-            # need delete code
-        else:
-            utils.log_msg(" ".join([server_log_id, "Health test passed. Loading load balancer config"]),
-                          "INFO",
-                          config.print_to)
-
-            # Add to load balancer pool
-            clb = pyrax.cloud_loadbalancers
-            if clb is None:
-                utils.log_msg(" ".join([server_log_id, "Failed to get load balancer object"]),
+        try:
+            url = "http://" + srv.accessIPv4 + config.server_health_url
+            urlobj = urllib2.urlopen(url,timeout = 5 )
+            urldata = urlobj.read()
+            sha1 = hashlib.sha1()
+            sha1.update(urldata)
+            if sha1.hexdigest() != config.server_health_url_digest:
+                utils.log_msg(" ".join([server_log_id, "Health test failed.Deleting cloud server"]),
                               "ERROR", config.print_to)
+                # need delete code
             else:
-                lb_name = config.clb_name
-                vip_found = False
-                lb_error = False
-                attempts = 5
-                while True:
-                    if attempts == 0:
-                        utils.log_msg(" ".join([server_log_id, "Max attempts reached to get load balancer listing"]),
-                                      "ERROR", config.print_to)
-                        lb_error = True
-                        break
-                    try:
-                        for lb in clb.list():
-                            if lb.name == lb_name:
-                                utils.log_msg(" ".join([server_log_id, "Load balancer pool",
-                                                        lb_name, "found"]),
-                                                "INFO",
-                                                config.print_to)
-                                lb_id = lb.id
-                                vip_found = True
-                                break
-                    except (pyrax.exceptions.OverLimit,pyrax.exceptions.ClientException) as e:
-                        time.sleep(config.clb_limit_sleep)
-                        continue
-                        attempts = attempts - 1
-                    break
+                utils.log_msg(" ".join([server_log_id, "Health test passed. Loading load balancer config"]),
+                              "INFO",
+                              config.print_to)
 
-                if vip_found == True and lb_error == False:
-                    skip_node = False
+                # Add to load balancer pool
+                clb = pyrax.cloud_loadbalancers
+                if clb is None:
+                    utils.log_msg(" ".join([server_log_id, "Failed to get load balancer object"]),
+                                  "ERROR", config.print_to)
+                else:
+                    lb_name = config.clb_name
+                    vip_found = False
+                    lb_error = False
                     attempts = 5
                     while True:
                         if attempts == 0:
-                            utils.log_msg(" ".join([server_log_id, "Max attempts reached to get load balancer node list"]),
+                            utils.log_msg(" ".join([server_log_id, "Max attempts reached to get load balancer listing"]),
                                           "ERROR", config.print_to)
                             lb_error = True
                             break
                         try:
-                            lb = clb.get(lb_id)
-                            if hasattr(lb, 'nodes'):
-                                for node in lb.nodes:
-                                    if node.address == srv.networks["private"][0]:
-                                        skip_node = True
-                            if skip_node:
-                                utils.log_msg(" ".join([server_log_id, "Skipping node as it already exists"]),
-                                              "INFO",
-                                              config.print_to)
-                            else:
-                                node = clb.Node(address=srv.networks["private"][0],
-                                            port=config.clb_node_port,
-                                            condition="ENABLED")
-                                utils.log_msg(" ".join([server_log_id, "Adding node to LB"]),
-                                              "INFO",
-                                              config.print_to)
-                                attempts = 5
-                                while True:
-                                    if attempts == 0:
-                                        utils.log_msg(" ".join([server_log_id, "Max attempts reached to get load balancer listing"]),
-                                                    "ERROR", config.print_to)
-                                        lb_error = True
-                                        break
-                                    try:
-                                        lb = clb.get(lb_id)
-                                        pyrax.utils.wait_until(lb, "status", "ACTIVE",
-                                                   interval=config.clb_build_check_interval,
-                                                   attempts=config.clb_build_check_attempts,
-                                                   verbose=False)
-                                        lb.add_nodes([node])
-
-                                    except (pyrax.exceptions.OverLimit,pyrax.exceptions.ClientException) as e:
-                                        time.sleep(config.clb_limit_sleep)
-                                        continue
-                                        attempts = attempts - 1
+                            for lb in clb.list():
+                                if lb.name == lb_name:
+                                    utils.log_msg(" ".join([server_log_id, "Load balancer pool",
+                                                            lb_name, "found"]),
+                                                    "INFO",
+                                                    config.print_to)
+                                    lb_id = lb.id
+                                    vip_found = True
                                     break
-
-                        except pyrax.exceptions.OverLimit,e:
+                        except (pyrax.exceptions.OverLimit,pyrax.exceptions.ClientException) as e:
                             time.sleep(config.clb_limit_sleep)
                             continue
                             attempts = attempts - 1
                         break
 
+                    if vip_found == True and lb_error == False:
+                        skip_node = False
+                        attempts = 5
+                        while True:
+                            if attempts == 0:
+                                utils.log_msg(" ".join([server_log_id, "Max attempts reached to get load balancer node list"]),
+                                              "ERROR", config.print_to)
+                                lb_error = True
+                                break
+                            try:
+                                lb = clb.get(lb_id)
+                                if hasattr(lb, 'nodes'):
+                                    for node in lb.nodes:
+                                        if node.address == srv.networks["private"][0]:
+                                            skip_node = True
+                                if skip_node:
+                                    utils.log_msg(" ".join([server_log_id, "Skipping node as it already exists"]),
+                                                  "INFO",
+                                                  config.print_to)
+                                else:
+                                    node = clb.Node(address=srv.networks["private"][0],
+                                                port=config.clb_node_port,
+                                                condition="ENABLED")
+                                    utils.log_msg(" ".join([server_log_id, "Adding node to LB"]),
+                                                  "INFO",
+                                                  config.print_to)
+                                    attempts = 5
+                                    while True:
+                                        if attempts == 0:
+                                            utils.log_msg(" ".join([server_log_id, "Max attempts reached to get load balancer listing"]),
+                                                        "ERROR", config.print_to)
+                                            lb_error = True
+                                            break
+                                        try:
+                                            lb = clb.get(lb_id)
+                                            pyrax.utils.wait_until(lb, "status", "ACTIVE",
+                                                       interval=config.clb_build_check_interval,
+                                                       attempts=config.clb_build_check_attempts,
+                                                       verbose=False)
+                                            lb.add_nodes([node])
 
+                                        except (pyrax.exceptions.OverLimit,pyrax.exceptions.ClientException) as e:
+                                            time.sleep(config.clb_limit_sleep)
+                                            continue
+                                            attempts = attempts - 1
+                                        break
+
+                            except pyrax.exceptions.OverLimit,e:
+                                time.sleep(config.clb_limit_sleep)
+                                continue
+                                attempts = attempts - 1
+                            break
+
+        except urllib2.URLError:
+            utils.log_msg(" ".join([server_log_id, "Health test failed.Deleting cloud server"]),
+                          "ERROR", config.print_to)
+            #new_srv.delete()
 
     else:
         utils.log_msg(" ".join([server_log_id, "Server not ACTIVE"]),
         "ERROR",
         config.print_to)
-        #delete
+        new_srv.delete()
