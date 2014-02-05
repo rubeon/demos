@@ -41,6 +41,8 @@ chef_roles = "'role[base],role[web]'"
 chef_env = "dev"
 chef_ssh_user = "root"
 chef_log_dir = "/home/sri/log/knife"
+
 #print_to = sys.stdout
+print_color = False
 logobj = open("/home/sri/log/spinone.log", "a+")
 print_to = logobj

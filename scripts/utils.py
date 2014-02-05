@@ -18,6 +18,7 @@ from termcolor import colored
 import sys
 import datetime
 import os
+import config
 
 color_debug = "yellow"
 color_error = "red"
@@ -25,14 +26,19 @@ color_pass = "green"
 
 
 def log_msg(msg, type, fileobj):
-    if type == "ERROR" or type == "FAIL":
-        print_color = "red"
-    if type == "PASS" or type == "NORMAL" or type == "INFO":
-        print_color = "green"
-    if type == "DEBUG":
-        print_color = "yellow"
-    print(colored("".join(["[", datetime.datetime.now().strftime('%x %X'), "]",
-                          "[", type, "]:", msg]),
-                  print_color), file=fileobj)
+    if config.print_color:
+        if type == "ERROR" or type == "FAIL":
+            print_color = "red"
+        if type == "PASS" or type == "NORMAL" or type == "INFO":
+            print_color = "green"
+        if type == "DEBUG":
+            print_color = "yellow"
+        print(colored("".join(["[", datetime.datetime.now().strftime('%x %X'), "]",
+                              "[", type, "]:", msg]),
+                      print_color), file=fileobj)
+    else:
+        print("".join(["[", datetime.datetime.now().strftime('%x %X'), "]",
+                              "[", type, "]:", msg])
+                      , file=fileobj)
     fileobj.flush()
     os.fsync(fileobj)
