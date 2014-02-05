@@ -1,28 +1,27 @@
 def application(environ, start_response):
     start_response('200 Ok', [('Content-type','text/plain')])
 
-    output = 0
-
     import os
     import pyrax
+    import sys
+    sys.path.append("/home/sri/demos/scripts/webui")
+    import config
+    output = "-1"
 
-    pyrax.set_setting("identity_type", "rackspace")
-    pyrax.set_setting("region", cloud_region)
     try:
-        creds_file = os.path.expanduser("pyrax.cfg")
-        pyrax.set_credential_file(creds_file)
-        pyrax.set_credentials(region="lon")
-    except exc.AuthenticationFailed:
-        output=0
+        pyrax.set_setting("identity_type", "rackspace")
+        pyrax.set_credentials(config.cloud_user,config.cloud_api_key,region=config.cloud_region)
+    except pyrax.exc.AuthenticationFailed:
+        output="-2"
 
     clb = pyrax.cloud_loadbalancers
     if clb is None:
-        output = 0
+        output = "-3"
     else:
         attempts = 5
         while True:
             if attempts == 0:
-                output = 0
+                output = "-4"
                 break
             try:
                 for lb in clb.list():
@@ -36,3 +35,4 @@ def application(environ, start_response):
                 attempts = attempts - 1
             break
     return (output)
+

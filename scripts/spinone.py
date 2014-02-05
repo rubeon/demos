@@ -58,7 +58,7 @@ try:
     pyrax.set_credentials(config.cloud_user,
                           config.cloud_api_key,
                           region=config.cloud_region)
-except exc.AuthenticationFailed:
+except pyrax.exc.AuthenticationFailed:
     utils.log_msg(" ".join([server_log_id, "Pyrax auth failed using", config.cloud_user]),
                   "ERROR",
                   config.print_to)
@@ -95,12 +95,10 @@ else:
     srv = cs.servers.get(new_srv.id)
 
     if srv.status == "ACTIVE":
-        utils.log_msg("%s %s,%s,%s,%s,%s,%s" % (server_log_id,
+        utils.log_msg("%s,%s,%s,%s,%s" % (server_log_id,
                                              srv.name,
-                                             srv.id,
                                              srv.accessIPv4,
                                              srv.networks["private"][0],
-                                             root_pass,
                                              srv.status),
                       "INFO",
                       config.print_to)

@@ -20,7 +20,7 @@ var chart; // global
  */
 function requestData() {
     $.ajax({
-        url: 'lbdata.wsgi',
+        url: 'lbdata',
         success: function(point) {
             var series = chart.series[0],
                 shift = series.data.length > 20; // shift if the series is

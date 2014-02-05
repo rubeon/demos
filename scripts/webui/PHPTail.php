@@ -222,7 +222,7 @@ class PHPTail {
 						$.getJSON('Log.php?ajax=1&lastsize='+lastSize + '&grep='+grep + '&invert='+invert, function(data) {
 							lastSize = data.size;
 							$.each(data.data, function(key, value) { 
-								$("#results").append('' + value + '<br/>');
+								$("#results").prepend('' + value + '<br/>');
 							});
 							if(scroll) {
 								scrollToBottom();
