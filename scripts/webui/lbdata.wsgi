@@ -6,17 +6,12 @@ def application(environ, start_response):
     import os
     import pyrax
 
-    cloud_user = os.environ['OS_USERNAME']
-    cloud_api_key = os.environ['OS_PASSWORD']
-    cloud_region = os.environ['OS_REGION_NAME'].upper()
-    cloud_tenant = os.environ['OS_TENANT_NAME']
-
     pyrax.set_setting("identity_type", "rackspace")
     pyrax.set_setting("region", cloud_region)
     try:
-        pyrax.set_credentials(cloud_user,
-                          cloud_api_key,
-                          region=cloud_region)
+        creds_file = os.path.expanduser("pyrax.cfg")
+        pyrax.set_credential_file(creds_file)
+        pyrax.set_credentials(region=cloud_region)
     except exc.AuthenticationFailed:
         output=0
 
