@@ -17,6 +17,7 @@ from __future__ import print_function
 from termcolor import colored
 import sys
 import datetime
+import os
 
 color_debug = "yellow"
 color_error = "red"
@@ -33,3 +34,5 @@ def log_msg(msg, type, fileobj):
     print(colored("".join(["[", datetime.datetime.now().strftime('%x %X'), "]",
                           "[", type, "]:", msg]),
                   print_color), file=fileobj)
+    fileobj.flush()
+    os.fsync(fileobj)

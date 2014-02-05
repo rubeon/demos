@@ -117,6 +117,7 @@ else:
                    "--node-name", srv.name,
                    "--environment", config.chef_env,
                    "--ssh-user", config.chef_ssh_user,
+                   "--no-host-key-verify",
                    srv.accessIPv4,
                    ">" + knife_log,
                    "2>" + knife_log]
@@ -165,7 +166,7 @@ else:
                                 lb_id = lb.id
                                 vip_found = True
                                 break
-                    except pyrax.exceptions.OverLimit,e:
+                    except (pyrax.exceptions.OverLimit,pyrax.exceptions.ClientException) as e:
                         time.sleep(config.clb_limit_sleep)
                         continue
                         attempts = attempts - 1
