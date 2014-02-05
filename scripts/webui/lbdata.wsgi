@@ -11,7 +11,7 @@ def application(environ, start_response):
     try:
         creds_file = os.path.expanduser("pyrax.cfg")
         pyrax.set_credential_file(creds_file)
-        pyrax.set_credentials(region=cloud_region)
+        pyrax.set_credentials(region="lon")
     except exc.AuthenticationFailed:
         output=0
 
