@@ -9,6 +9,7 @@ def application(environ, start_response):
     sys.path.append("/home/sri/demos/scripts/webui")
     import config
     output = []
+    output.append(time.clock()*1000)
 
     try:
         pyrax.set_setting("identity_type", "rackspace")

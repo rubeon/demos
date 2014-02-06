@@ -103,7 +103,7 @@ else:
                       "INFO",
                       config.print_to)
 
-        utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Environment =", config.chef_env,"Roles =",config.chef_roles]),
+        utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", ",Environment =", config.chef_env,",Roles =",config.chef_roles]),
                       "INFO", config.print_to)
 
         # Now we bootstrap with knife
