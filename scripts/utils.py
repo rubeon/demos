@@ -19,6 +19,7 @@ import sys
 import datetime
 import os
 import config
+import dbconfig
 import string
 import MySQLdb
 
@@ -51,10 +52,10 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 
 def log_db(server_name, build_group, build_status):
 
-    conn = MySQLdb.connect (host = config.report_db_host,
-                        user = config.report_db_user,
-                        passwd = config.report_db_pass,
-                        db = config.report_db_name)
+    conn = MySQLdb.connect (host = dbconfig.report_db_host,
+                        user = dbconfig.report_db_user,
+                        passwd = dbconfig.report_db_pass,
+                        db = dbconfig.report_db_name)
     cursor = conn.cursor ()
     chk_qry = "SELECT * from demo.buildstatus where server_name = \'%s\'" % (server_name)
     cursor.execute (chk_qry)

@@ -22,3 +22,8 @@ Chef Cookbooks
   * Deployed Java applications
 
 
+Todo
+=====
+
+ * Reformat them to follow https://github.com/rackspace-cookbooks/contributing guidelines
+ * Build Chef Test Specs

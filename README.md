@@ -15,5 +15,3 @@ How to test this yourself
  * You will need a Chef server
  * See [Chef Readme](./chef/README.md) for details around Chef
  * Scripts require Python and Rackspace python API (Pyrax)
-
-

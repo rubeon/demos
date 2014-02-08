@@ -51,12 +51,5 @@ print_color = False
 logobj = open("/home/sri/log/build.log", "a+")
 print_to = logobj
 
-# only used by the webui to run a demo
-build_total = 5
-report_db_host = os.environ['BUILD_DB_HOST']
-report_db_name = os.environ['BUILD_DB_NAME']
-report_db_user = os.environ['BUILD_DB_USER']
-report_db_pass = os.environ['BUILD_DB_PASS']
-
 
 
