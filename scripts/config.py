@@ -16,19 +16,22 @@
 import sys
 import os
 
+# cloud auth data will be pulled from environment
 cloud_user = os.environ['OS_USERNAME']
 cloud_api_key = os.environ['OS_PASSWORD']
 cloud_region = os.environ['OS_REGION_NAME'].upper()
 cloud_tenant = os.environ['OS_TENANT_NAME']
 
+# server build configuration
 server_image = "f70ed7c7-b42e-4d77-83d8-40fa29825b85"
 server_flavor = "performance1-1"
 server_build_check_interval = 30
 server_build_check_attempts = 10
-server_ssh_keypair = "sri-key"
+server_ssh_keypair = "demo-key"
 server_health_url = "/health-check.php"
 server_health_url_digest = "6783deae6fb363c7bd7fc81565e5c3aad7ccdb34"
 
+# load balancer configuration
 clb_name = "one.example.com"
 clb_port = 80
 clb_protcol = "HTTP"
@@ -37,12 +40,23 @@ clb_limit_sleep = 10
 clb_build_check_interval = 30
 clb_build_check_attempts = 10
 
+# chef settings
 chef_roles = "'role[base],role[web]'"
 chef_env = "dev"
 chef_ssh_user = "root"
 chef_log_dir = "/home/sri/log/knife"
 
-#print_to = sys.stdout
+#print_to = sys.stdout #use this to print to screen
 print_color = False
-logobj = open("/home/sri/log/spinone.log", "a+")
+logobj = open("/home/sri/log/build.log", "a+")
 print_to = logobj
+
+# only used by the webui to run a demo
+build_total = 5
+report_db_host = os.environ['BUILD_DB_HOST']
+report_db_name = os.environ['BUILD_DB_NAME']
+report_db_user = os.environ['BUILD_DB_USER']
+report_db_pass = os.environ['BUILD_DB_PASS']
+
+
+
