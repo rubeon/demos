@@ -1,1 +1,1 @@
-Chef Cookbooks and other stuff for public Demo
+Chef Cookbooks
