@@ -47,7 +47,7 @@ for o, a in opts:
 
 server_log_id = "Node:" + server_name
 
-utils.log_msg(" ".join([server_log_id, "Starting spinone"]),
+utils.log_msg(" ".join([server_log_id, "Starting build-one"]),
               "INFO",
               config.print_to)
 
@@ -122,9 +122,14 @@ else:
                    ">" + knife_log,
                    "2>" + knife_log]
 
-        os.system(" ".join(cmdargs))
-        utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Complete"]),
+        if os.system(" ".join(cmdargs)) == 0:
+          utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Complete"]),
                       "INFO", config.print_to)
+        else:
+          utils.log_msg(" ".join([server_log_id, "Bootstrapping Chef", "Failed"]),
+                      "INFO", config.print_to)
+
+
 
         try:
             url = "http://" + srv.accessIPv4 + config.server_health_url
@@ -135,7 +140,7 @@ else:
             if sha1.hexdigest() != config.server_health_url_digest:
                 utils.log_msg(" ".join([server_log_id, "Health test failed.Deleting cloud server"]),
                               "ERROR", config.print_to)
-                # need delete code
+                new_srv.delete()
             else:
                 utils.log_msg(" ".join([server_log_id, "Health test passed. Adding to load balancer"]),
                               "INFO",
@@ -146,6 +151,7 @@ else:
                 if clb is None:
                     utils.log_msg(" ".join([server_log_id, "Failed to get load balancer object"]),
                                   "ERROR", config.print_to)
+
                 else:
                     lb_name = config.clb_name
                     vip_found = False
@@ -229,7 +235,7 @@ else:
         except urllib2.URLError:
             utils.log_msg(" ".join([server_log_id, "Health test failed.Deleting cloud server"]),
                           "ERROR", config.print_to)
-            #new_srv.delete()
+            new_srv.delete()
 
     else:
         utils.log_msg(" ".join([server_log_id, "Server not ACTIVE"]),

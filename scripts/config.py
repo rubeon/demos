@@ -27,7 +27,7 @@ server_image = "f70ed7c7-b42e-4d77-83d8-40fa29825b85"
 server_flavor = "performance1-1"
 server_build_check_interval = 30
 server_build_check_attempts = 10
-server_ssh_keypair = "demo-key"
+server_ssh_keypair = "sri-key"
 server_health_url = "/health-check.php"
 server_health_url_digest = "6783deae6fb363c7bd7fc81565e5c3aad7ccdb34"
 
@@ -46,10 +46,10 @@ chef_env = "dev"
 chef_ssh_user = "root"
 chef_log_dir = "/home/sri/log/knife"
 
-#print_to = sys.stdout #use this to print to screen
+print_to = sys.stdout #use this to print to screen
 print_color = False
-logobj = open("/home/sri/log/build.log", "a+")
-print_to = logobj
+#logobj = open("/home/sri/log/build.log", "a+")
+#print_to = logobj
 
 
 

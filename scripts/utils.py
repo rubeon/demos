@@ -21,7 +21,6 @@ import os
 import config
 import dbconfig
 import string
-import MySQLdb
 
 color_debug = "yellow"
 color_error = "red"
@@ -48,24 +47,3 @@ def log_msg(msg, type, fileobj):
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     import random
     return ''.join(random.choice(chars) for x in range(size))
-
-
-def log_db(server_name, build_group, build_status):
-
-    conn = MySQLdb.connect (host = dbconfig.report_db_host,
-                        user = dbconfig.report_db_user,
-                        passwd = dbconfig.report_db_pass,
-                        db = dbconfig.report_db_name)
-    cursor = conn.cursor ()
-    chk_qry = "SELECT * from demo.buildstatus where server_name = \'%s\'" % (server_name)
-    cursor.execute (chk_qry)
-    numrows = int(cursor.rowcount)
-    if numrows == 0:
-        qry = "INSERT INTO demo.buildstatus (server_name, %s) values (\'%s\', \'%s\')" % (build_group, server_name, build_status)
-
-    else:
-        qry = "UPDATE demo.buildstatus set %s = \'%s\' where server_name = \'%s\'" % (build_group, build_status,server_name)
-
-    cursor.execute (qry)
-    cursor.close ()
-    conn.close ()
