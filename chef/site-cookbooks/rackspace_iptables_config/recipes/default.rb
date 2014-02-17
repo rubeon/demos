@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: php
+# Cookbook Name:: rackspace_iptables_config
 # Recipe:: default
 #
-# Copyright 2013, 
+# Copyright 2014, 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe 'rackspace_iptables'
 
-package "php" do
-    action :install
-end
+add_iptables_rule('INPUT', '-s 0.0.0.0 -p tcp --dport 22 -j ACCEPT')
 
-package "php-mysql" do
-    action :install
-end
+add_iptables_rule('INPUT', '-s 0.0.0.0 -p tcp --dport 80 -j ACCEPT')
