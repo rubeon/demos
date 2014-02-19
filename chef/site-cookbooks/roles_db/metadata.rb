@@ -6,8 +6,7 @@ description      'Installs/Configures roles_db'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.4'
 
-
-#### DB recipes
-depends "mysql"
-depends "mysql_config"
-depends "partial_search"
+depends "openssl"
+depends "rackspace_mysql"
+depends "rackspace_build_essential"
+depends "website_one_db"

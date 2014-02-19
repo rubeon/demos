@@ -1,42 +1,54 @@
-[submodule "chef/cookbooks/sudo"]
-	path = chef/cookbooks/sudo
-	url = https://github.com/opscode-cookbooks/sudo
-[submodule "chef/cookbooks/build-essential"]
-	path = chef/cookbooks/build-essential
-	url = https://github.com/opscode-cookbooks/build-essential
-[submodule "chef/cookbooks/rackspace-user"]
-	path = chef/cookbooks/rackspace-user
-	url = https://github.com/rackspace-cookbooks/rackspace-user
 [submodule "chef/cookbooks/cron"]
 	path = chef/cookbooks/cron
 	url = https://github.com/opscode-cookbooks/cron
-[submodule "chef/cookbooks/logrotate"]
-	path = chef/cookbooks/logrotate
-	url = https://github.com/opscode-cookbooks/logrotate
 [submodule "chef/cookbooks/apache2"]
 	path = chef/cookbooks/apache2
 	url = https://github.com/opscode-cookbooks/apache2
-[submodule "chef/cookbooks/iptables"]
-	path = chef/cookbooks/iptables
-	url = https://github.com/opscode-cookbooks/iptables
-[submodule "chef/cookbooks/sysctl"]
-	path = chef/cookbooks/sysctl
-	url = https://github.com/onehealth-cookbooks/sysctl
 [submodule "chef/cookbooks/java"]
 	path = chef/cookbooks/java
 	url = https://github.com/opscode-cookbooks/java
-[submodule "chef/cookbooks/mysql"]
-	path = chef/cookbooks/mysql
-	url = https://github.com/opscode-cookbooks/mysql
 [submodule "chef/cookbooks/openssl"]
 	path = chef/cookbooks/openssl
 	url = https://github.com/opscode-cookbooks/openssl
-[submodule "chef/cookbooks/users"]
-	path = chef/cookbooks/users
-	url = https://github.com/opscode-cookbooks/users
-[submodule "chef/cookbooks/apt"]
-	path = chef/cookbooks/apt
-	url = https://github.com/opscode-cookbooks/apt
-[submodule "chef/cookbooks/partial_search"]
-	path = chef/cookbooks/partial_search
-	url = https://github.com/opscode-cookbooks/partial_search
+[submodule "chef/cookbooks/rackspace_mysql"]
+	path = chef/cookbooks/rackspace_mysql
+	url = https://github.com/rackspace-cookbooks/rackspace_mysql
+[submodule "chef/cookbooks/rackspace_yum"]
+	path = chef/cookbooks/rackspace_yum
+	url = https://github.com/rackspace-cookbooks/rackspace_yum
+[submodule "chef/cookbooks/rackspace_sudo"]
+	path = chef/cookbooks/rackspace_sudo
+	url = https://github.com/rackspace-cookbooks/rackspace_sudo
+[submodule "chef/cookbooks/rackspace_php"]
+	path = chef/cookbooks/rackspace_php
+	url = https://github.com/rackspace-cookbooks/rackspace_php
+[submodule "chef/cookbooks/rackspace_ntp"]
+	path = chef/cookbooks/rackspace_ntp
+	url = https://github.com/rackspace-cookbooks/rackspace_ntp
+[submodule "chef/cookbooks/rackspace_iptables"]
+	path = chef/cookbooks/rackspace_iptables
+	url = https://github.com/rackspace-cookbooks/rackspace_iptables
+[submodule "chef/cookbooks/rackspace_logrotate"]
+	path = chef/cookbooks/rackspace_logrotate
+	url = https://github.com/rackspace-cookbooks/rackspace_logrotate
+[submodule "chef/cookbooks/rackspace_motd"]
+	path = chef/cookbooks/rackspace_motd
+	url = https://github.com/rackspace-cookbooks/rackspace_motd
+[submodule "chef/cookbooks/rackspace_apt"]
+	path = chef/cookbooks/rackspace_apt
+	url = https://github.com/rackspace-cookbooks/rackspace_apt
+[submodule "chef/cookbooks/rackspace_user"]
+	path = chef/cookbooks/rackspace_user
+	url = https://github.com/rackspace-cookbooks/rackspace_user
+[submodule "chef/cookbooks/rackspace_sysctl"]
+	path = chef/cookbooks/rackspace_sysctl
+	url = https://github.com/rackspace-cookbooks/rackspace_sysctl
+[submodule "chef-repo/cookbooks/rackspace_build_essential"]
+	path = chef-repo/cookbooks/rackspace_build_essential
+	url = https://github.com/rackspace-cookbooks/rackspace_build_essential
+[submodule "chef/cookbooks/rackspace_build_essential"]
+	path = chef/cookbooks/rackspace_build_essential
+	url = https://github.com/rackspace-cookbooks/rackspace_build_essential
+[submodule "chef/cookbooks/rackspace_openssh"]
+	path = chef/cookbooks/rackspace_openssh
+	url = https://github.com/rackspace-cookbooks/rackspace_openssh

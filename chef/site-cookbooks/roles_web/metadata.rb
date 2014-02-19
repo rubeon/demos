@@ -1,13 +1,13 @@
 name             'roles_web'
 maintainer       ''
-maintainer_email 'DevOpsAdvisory-INTL@RACKSPACE.COM'
+maintainer_email ''
 license          'Apache 2.0'
 description      'Installs/Configures roles_web'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.1'
+version          '0.1.2'
 
-#### WEB recipes
 depends "apache2"
-depends "apache2_config"
-depends "php"
-depends "php_app"
+depends "rackspace_php"
+depends "rackspace_mysql"
+depends "website_one"
+

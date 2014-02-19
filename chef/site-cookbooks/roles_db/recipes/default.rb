@@ -17,5 +17,17 @@
 # limitations under the License.
 #
 #
-include_recipe "mysql_config"
+
+passwords = Chef::EncryptedDataBagItem.load("config", "passwords")
+node.set['rackspace_mysql']['port'] = '3306'
+node.set['rackspace_mysql']['data_dir'] = '/var/lib/mysql'
+node.set['rackspace_mysql']['server_root_password'] = passwords["mysql_root"]
+node.set['rackspace_mysql']['remove_anonymous_users'] = 'yes'
+node.set['rackspace_mysql']['remove_test_database'] = 'yes'
+
+include_recipe "rackspace_mysql::server"
+
+add_iptables_rule('INPUT', '-s 0.0.0.0 -p tcp --dport 3306 -j ACCEPT')
+
+include_recipe "website_one_db"
 
