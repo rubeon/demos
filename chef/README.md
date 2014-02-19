@@ -27,6 +27,14 @@ Chef Cookbooks
 Knife commands
 =====
 
+
+n=demo-db01; knife rackspace server create -r  'role[base],role[db]' --server-name $n --node-name $n --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
+
+
+
+knife rackspace server create -r  'role[base]' --server-name t102 --node-name t101 --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
+
+
 knife rackspace server create -r  'role[base],role[web]' --server-name web101 --node-name web101 --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
 
 n=web101; nova delete $n; knife node delete -y $n; knife client delete -y $n; 
