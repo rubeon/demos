@@ -1,5 +1,5 @@
 
-default["website_one"]["db_host"] = "10.181.75.182"
+default["website_one"]["db_host"] = "10.181.102.187"
 default["website_one"]["db_user"] = "app"
 default["website_one"]["db_name"] = "world"
 default["website_one"]["db_pass_data_bag_item"] = "mysql_app"

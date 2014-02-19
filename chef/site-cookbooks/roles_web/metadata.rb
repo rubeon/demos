@@ -8,4 +8,5 @@ version          '0.1.2'
 
 depends "apache2"
 depends "rackspace_php"
+depends "rackspace_mysql"
 depends "website_one"

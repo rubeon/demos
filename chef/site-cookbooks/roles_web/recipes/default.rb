@@ -39,12 +39,12 @@
 
 ### Apache settings
 # Override defaults for the recipe
-node.default['apache']['listen_addresses'] = ["*"]
-node.default['apache']['listen_ports']  = ["80","443"]
-node.default['apache']['timeout'] = 100
-node.default['apache']['keepalive'] = true
-node.default['apache']['keepaliverequests'] = 100
-node.default['apache']['keepalivetimeout'] = 3
+node.set['apache']['listen_addresses'] = ["*"]
+node.set['apache']['listen_ports']  = ["80","443"]
+node.set['apache']['timeout'] = 100
+node.set['apache']['keepalive'] = true
+node.set['apache']['keepaliverequests'] = 100
+node.set['apache']['keepalivetimeout'] = 3
 
 include_recipe "apache2::default"
 include_recipe "apache2::mod_ssl"
@@ -56,7 +56,12 @@ include_recipe "apache2::mod_proxy_http"
 add_iptables_rule('INPUT', '-s 0.0.0.0 -p tcp --dport 80 -j ACCEPT')
 add_iptables_rule('INPUT', '-s 0.0.0.0 -p tcp --dport 443 -j ACCEPT')
 
+### Mysql client
+include_recipe "rackspace_mysql::client"
+
+
 ### PHP
+node.set['rackspace_php']['packages'] = ["php-mysql", "php" , "php-cli", "php-pear"]
 include_recipe "rackspace_php"
 
 ### Cookbook to deploy sample website
