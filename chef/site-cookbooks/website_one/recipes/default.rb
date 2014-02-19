@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: php_app
+# Cookbook Name:: website_one
 # Recipe:: default
 #
 # Copyright 2014, 
@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+#### Create Apache vhost
+
 web_app "one.example.com" do
   server_name node['hostname']
   server_aliases [node['fqdn'], "one.example.com"]
@@ -24,8 +26,10 @@ web_app "one.example.com" do
 end
 
 
+### Upload site content
+
 # Create directory
-directory node["php_app"]["site_root"] do
+directory node["website_one"]["site_root"] do
   owner node['apache']['user']
   group node['apache']['group']
   mode 00755
@@ -33,30 +37,32 @@ directory node["php_app"]["site_root"] do
   recursive true
 end
 
-local_tar_file = node["php_app"]["site_root"] + "/" + node["php_app"]["site_remote_filename"]
+local_tar_file = node["website_one"]["site_root"] + "/" + node["website_one"]["site_remote_filename"]
 
 remote_file local_tar_file do
   action :create_if_missing
-  source node["php_app"]["site_remote_url"]
+  source node["website_one"]["site_remote_url"]
 end
 
 bash 'extract_module' do
   code <<-EOH
-    tar xzf #{local_tar_file} -C #{node["php_app"]["site_root"]}
-    chown -R #{node['apache']['user']}:#{node['apache']['group']} #{node["php_app"]["site_root"]}
+    tar xzf #{local_tar_file} -C #{node["website_one"]["site_root"]}
+    chown -R #{node['apache']['user']}:#{node['apache']['group']} #{node["website_one"]["site_root"]}
     EOH
 end
 
-template node["php_app"]["site_db_conf"]  do
+### Create a database configuration file
+
+template node["website_one"]["site_db_conf"]  do
     source "dbconf.erb"
     mode 0440
     owner node['apache']['user']
     group node['apache']['group']
     passwords = Chef::EncryptedDataBagItem.load("config", "passwords")
     variables(
-      :db_host => node['php_app']['db_host'],
-      :db_user => node['php_app']['db_user'],
-      :db_password =>  passwords[node["php_app"]["db_pass_data_bag_item"]],
-      :db_name => node['php_app']['db_name']
+      :db_host => node['website_one']['db_host'],
+      :db_user => node['website_one']['db_user'],
+      :db_password =>  passwords[node["website_one"]["db_pass_data_bag_item"]],
+      :db_name => node['website_one']['db_name']
     )
 end

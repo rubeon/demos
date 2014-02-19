@@ -8,7 +8,6 @@ version          '0.1.1'
 
 #### APP recipes
 depends "java"
-depends "java_config"
 depends "jboss"
 depends "jboss_app"
 
