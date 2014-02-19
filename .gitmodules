@@ -31,9 +31,6 @@
 [submodule "chef/cookbooks/rackspace_logrotate"]
 	path = chef/cookbooks/rackspace_logrotate
 	url = https://github.com/rackspace-cookbooks/rackspace_logrotate
-[submodule "chef/cookbooks/rackspace_build_essential"]
-	path = chef/cookbooks/rackspace_build_essential
-	url = https://github.com/rackspace-cookbooks/rackspace_build_essential
 [submodule "chef/cookbooks/rackspace_motd"]
 	path = chef/cookbooks/rackspace_motd
 	url = https://github.com/rackspace-cookbooks/rackspace_motd
@@ -51,4 +48,7 @@
 	url = https://github.com/rackspace-cookbooks/rackspace_openssh
 [submodule "chef-repo/cookbooks/rackspace_build_essential"]
 	path = chef-repo/cookbooks/rackspace_build_essential
+	url = https://github.com/rackspace-cookbooks/rackspace_build_essential
+[submodule "chef/cookbooks/rackspace_build_essential"]
+	path = chef/cookbooks/rackspace_build_essential
 	url = https://github.com/rackspace-cookbooks/rackspace_build_essential
