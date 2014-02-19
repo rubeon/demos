@@ -97,3 +97,6 @@
 [submodule "chef/cookbooks/rackspace_openssh"]
 	path = chef/cookbooks/rackspace_openssh
 	url = https://github.com/rackspace-cookbooks/rackspace_openssh
+[submodule "chef-repo/cookbooks/rackspace_build_essential"]
+	path = chef-repo/cookbooks/rackspace_build_essential
+	url = https://github.com/rackspace-cookbooks/rackspace_build_essential
