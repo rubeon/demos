@@ -17,6 +17,12 @@
 # limitations under the License.
 #
 
+
+### Get IP of the DB server
+dbnodes = search(:node, "role:db")
+node.set["website_one"]["db_host"] = dbnodes.first[:rackspace][:private_ip]
+
+
 #### Create Apache vhost
 
 web_app "one.example.com" do
