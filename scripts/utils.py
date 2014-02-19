@@ -19,7 +19,6 @@ import sys
 import datetime
 import os
 import config
-import dbconfig
 import string
 
 color_debug = "yellow"

@@ -47,7 +47,7 @@ chef_ssh_user = "root"
 chef_log_dir = "/home/sri/log/knife"
 
 print_to = sys.stdout #use this to print to screen
-print_color = False
+print_color = True
 #logobj = open("/home/sri/log/build.log", "a+")
 #print_to = logobj
 
