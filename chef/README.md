@@ -1,5 +1,8 @@
+
 Chef Cookbooks
 =====
+
+Demonstrates the use of chef to configure common things.   Base role does the usual basic stuff like iptables etc. DB role installs mysql and load the sample world database. Web role installs apache and loads a php app. App role installs Jboss and deploys a Jboss application.
 
 **Base**
   * Configure the firewall
@@ -23,32 +26,89 @@ Chef Cookbooks
   * Deployed a sample database
 
 
-
-Knife commands
+How to use it
 =====
 
+ * Clone the demo repo
+```
+git clone https://github.com/bigcloudsolutions/demos
+```
 
-n=demo-db01; knife rackspace server create -r  'role[base],role[db]' --server-name $n --node-name $n --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
+ 
+ * Switch to the demo_v1 branch
+```
+git checkout demo_v1
+```
 
+ * Load environments
+```
+knife environment from file chef/environments/*
+```
 
+ * Load roles
+```
+knife role from file chef/roles/*
+```
 
-knife rackspace server create -r  'role[base]' --server-name t102 --node-name t101 --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
+* Load data bags
+```
+knife data bag create config
+knife data bag from file passwords chef/data_bags/config/passwords.json
+```
 
+ * Configure Knife to use the enckey in the data_bags folder. This is needed for the encrypted data bags.
 
-knife rackspace server create -r  'role[base],role[web]' --server-name web101 --node-name web101 --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
+ * Upload the cookbooks
+```
+knife cookbook upload -a
+```
 
-n=web101; nova delete $n; knife node delete -y $n; knife client delete -y $n; 
+ * Build a server with DB role
+```
+knife rackspace server create  \
+ --server-name websiteone_db \
+ --node-name websiteone_db \
+ --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 \
+ --flavor  performance1-1 \
+ --rackspace-region lon  \
+ --no-host-key-verify  \
+ -r 'role[base],role[db]' -V
+```
 
-knife rackspace server create -r  'role[base],role[web],role[app]' --server-name web102 --node-name web102 --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
+ * Build a server with web role
+```
+knife rackspace server create  \
+ --server-name websiteone_web01 \
+ --node-name websiteone_web01 \
+ --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 \
+ --flavor  performance1-1 \
+ --rackspace-region lon  \
+ --no-host-key-verify  \
+ -r 'role[base],role[web]' -V
+```
 
-n=web102; nova delete $n; knife node delete -y $n; knife client delete -y $n; 
+ * Test the IP of the web node. This will be running a PHP website
+```
+/
+/world.php
+/world-view.php
+```
 
+ * [Optional] - Build a server with web app role
+```
+knife rackspace server create  \
+ --server-name websiteone_web01 \
+ --node-name websiteone_web01 \
+ --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 \
+ --flavor  performance1-1 \
+ --rackspace-region lon  \
+ --no-host-key-verify  \
+ -r 'role[base],role[web],role[app]' -V
+```
 
-knife rackspace server create --server-name t100 --node-name t100 --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 --flavor  performance1-1 --environment prod --rackspace-region lon --no-host-key-verify
-
-
-Todo
-=====
-
- * Reformat them to follow https://github.com/rackspace-cookbooks/contributing guidelines
- * Build Chef Test Specs
+ * Test the IP of the web node. This will be running a Java app
+```
+/guess/
+/helloworld/
+```
+ 

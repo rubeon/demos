@@ -9,9 +9,5 @@ mysql_db - Example mysql db
 scripts - Scripts to automate server creation and testing
 
 
-How to test this yourself
-=====
+See [Chef Readme](./chef/README.md) for details around Chef
 
- * You will need a Chef server
- * See [Chef Readme](./chef/README.md) for details around Chef
- * Scripts require Python and Rackspace python API (Pyrax)
