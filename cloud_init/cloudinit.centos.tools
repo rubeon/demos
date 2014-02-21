@@ -3,20 +3,15 @@
 #create stub configuration files for nova, knife
 
 packages:
-  - build-essential
   - screen
   - less
   - tcpdump
   - sudo
   - python-pip
-  - python-setuptools
   - wget
-  - ruby1.9.1 
-  - ruby1.9.1-dev
   - vim
   - curl 
-
-
+  - python-setuptools
 
 users:
   - name: demo
@@ -29,6 +24,7 @@ users:
       - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA8qZ1W3X+VFSoK8741Pew4B8v7MOhJE9nDAAdMMtzs1xeAmlqs09kqjyIAvRsoeKL/qrLQE2nE/JRpkCOXf99MhdQIeJwXFj3lb1SdIsP7cDuLbtl95EygSjSf5ip+pswJl9BeKRvOPpu5ksX1okoSvXGj2LaTLsFZ1hkzf0S7OHycHRHgpb5v5flzVvCCyW9Vh5WjZHOh8QnNoNWhlA9ljLt/nOIveALxHbHitbX7zirVC0DQqVhwC1d1pHeIbFpLgLoDQV8vghRWyPjPnfS8AyFTs2CEzAnm6UtCEO/Vw1s/UTm9/qHUNS5cRvCn783rvFPQ6motglazv9igvF7cQ== sri@devnull
 
 runcmd:
+  - yum -y groupinstall 'Development Tools'
   - pip install httpie rackspace-novaclient pyrax
   - gem install rumm --no-rdoc --no-ri
   - wget http://bit.ly/1jeNF66 -O /home/demo/nova.bash_completion
