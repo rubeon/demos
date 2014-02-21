@@ -2,7 +2,7 @@ Info
 =====
 cloudinit.ubuntu.001  - Simple cloud init example
 
-cloudinit.ubuntu.001  - Example with phone home
+cloudinit.ubuntu.002  - Example with phone home
 
 cloudinit.ubuntu.tools - Install common tools for cloud , etc on Ubuntu/Debian
 
