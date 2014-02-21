@@ -1,7 +1,5 @@
 #cloud-config
-#simple example with cloud init
-apt_mirror: http://mirror.rackspace.com/ubuntu/
-apt_mirror_search_dns: false
+# example with cloud init and phone home
 
 packages:
   - build-essential
@@ -9,8 +7,9 @@ packages:
   - less
   - tcpdump
   - sudo
+  - sudo
   - vim
-  
+
 
 users:
   - name: sri
@@ -23,10 +22,11 @@ users:
     ssh-authorized-keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA8qZ1W3X+VFSoK8741Pew4B8v7MOhJE9nDAAdMMtzs1xeAmlqs09kqjyIAvRsoeKL/qrLQE2nE/JRpkCOXf99MhdQIeJwXFj3lb1SdIsP7cDuLbtl95EygSjSf5ip+pswJl9BeKRvOPpu5ksX1okoSvXGj2LaTLsFZ1hkzf0S7OHycHRHgpb5v5flzVvCCyW9Vh5WjZHOh8QnNoNWhlA9ljLt/nOIveALxHbHitbX7zirVC0DQqVhwC1d1pHeIbFpLgLoDQV8vghRWyPjPnfS8AyFTs2CEzAnm6UtCEO/Vw1s/UTm9/qHUNS5cRvCn783rvFPQ6motglazv9igvF7cQ== sri@devnull
 
-bootcmd:
-  - echo 8.8.8.8 google_dns >> /etc/hosts
-
-runcmd:
-  - cp /etc/vim/vimrc /root/.vimrc
+phone_home:
+  url: http://www.tty0.me/cloud-init.php
+  post: all
+  tries: 3
 
 output: {all: '| tee -a /var/log/cloud-init-output.log'}
+
+

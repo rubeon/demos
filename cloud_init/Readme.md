@@ -2,6 +2,8 @@ Info
 =====
 cloudinit.ubuntu.001  - Simple cloud init example
 
+cloudinit.ubuntu.001  - Example with phone home
+
 cloudinit.ubuntu.tools - Install common tools for cloud , etc on Ubuntu/Debian
 
 cloudinit.centos.tools - Install common tools for cloud , etc on CentOS/RHEL
@@ -31,4 +33,3 @@ On Rackspace cloud using Ubuntu 13.10 (Saucy Salamander) (PVHVM)  image :-
 ```
 nova boot --config-drive=true --user-data=cloudinit.ubuntu.tools --image=2ab974de-9fe5-4f5b-9d58-766a59f3de61 --flavor=performance1-1 c0004
 ```
-
