@@ -52,3 +52,18 @@
 [submodule "chef/cookbooks/rackspace_openssh"]
 	path = chef/cookbooks/rackspace_openssh
 	url = https://github.com/rackspace-cookbooks/rackspace_openssh
+[submodule "chef/cookbooks/rackspacecloud"]
+	path = chef/cookbooks/rackspacecloud
+	url = https://github.com/rackops/rackspacecloud
+[submodule "chef/cookbooks/windows"]
+	path = chef/cookbooks/windows
+	url = https://github.com/opscode-cookbooks/windows
+[submodule "chef/cookbooks/sql_server"]
+	path = chef/cookbooks/sql_server
+	url = https://github.com/opscode-cookbooks/sql_server
+[submodule "chef/cookbooks/iis"]
+	path = chef/cookbooks/iis
+	url = https://github.com/opscode-cookbooks/iis
+[submodule "chef/cookbooks/chef_handler"]
+	path = chef/cookbooks/chef_handler
+	url = https://github.com/opscode-cookbooks/chef_handler
