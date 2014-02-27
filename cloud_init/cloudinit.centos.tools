@@ -38,11 +38,11 @@ runcmd:
   - echo 'export OS_USERNAME=REPLACE_WITH_USERNAME' >> /home/demo/novarc
   - echo 'export OS_PASSWORD=REPLACE_WITH_PASSWORD' >> /home/demo/novarc
   - echo 'export OS_TENANT_NAME=REPLACE_WITH_ACCOUNT_NUMBER' >> /home/demo/novarc
-  - echo 'export CHEF_CREDS_DIR=/root/.chef' >> /home/demo/chefrc
-  - echo 'export CHEF_ENC_DATA_BAG_SECRET=/root/.chef/enckey' >> /home/demo/chefrc
-  - echo 'export CHEF_REPO_DIR=/root/chef/chef-repo/' >> /home/demo/chefrc
+  - echo 'export CHEF_CREDS_DIR=/home/demo/.chef' >> /home/demo/chefrc
+  - echo 'export CHEF_ENC_DATA_BAG_SECRET=/home/demo/.chef/enckey' >> /home/demo/chefrc
+  - echo 'export CHEF_REPO_DIR=/home/demo/chef/chef-repo/' >> /home/demo/chefrc
   - echo 'export CHEF_SERVER_URL=REPLACE_WITH_CHEF_URL' >> /home/demo/chefrc
-  - echo 'export CHEF_SYNTAX_CHECK_CACHE=/root/chef/syntax_check_cache' >> /home/demo/chefrc
+  - echo 'export CHEF_SYNTAX_CHECK_CACHE=/home/demo/chef/syntax_check_cache' >> /home/demo/chefrc
   - echo 'export CHEF_USER=REPLACE_WITH_CHEF_USER' >> /home/demo/chefrc
   - echo 'export CHEF_VALIDATOR_USER=REPLACE_WITH_CHEF_VALIDATOR_USER' >> /home/demo/chefrc
   - mkdir -p /home/demo/.chef
