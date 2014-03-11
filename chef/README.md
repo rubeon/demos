@@ -26,7 +26,7 @@ Demonstrates the use of chef to configure common things.   Base role does the us
   * Deployed a sample database
 
 
-How to use it
+Using knife
 =====
 
  * Clone the demo repo
@@ -111,4 +111,31 @@ knife rackspace server create  \
 /guess/
 /helloworld/
 ```
- 
+
+Using Vagrant
+=====
+
+ * Ensure you have vagrant vagrant-rackspace vagrant-omnibus and vagrant-yaml plugins. Ruby 1.9.3 as well (Ruby 2.0 has issues)
+```
+sudo gem install vagrant vagrant-rackspace vagrant-yaml
+```
+
+ * Edit vagrant_config.yaml to set the box name and urls etc. Also set the rackspace cloud credentials if you want to use vagrant with Rackspace cloud. Likewise set your SSH keys in the vagrant_config.yaml.  Vagrant by default uses a private key that is available as part of the package. This is not ideal for public cloud servers.
+
+
+ * To run Locally
+
+```
+vagrant up
+```
+
+ * Using Rackspace cloud
+```
+vagrant up --provider rackspace
+```
+
+ * Troubleshooting. Set debug and run
+```
+export VAGRANT_LOG=debug
+```
+
