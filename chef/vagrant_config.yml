@@ -1,0 +1,46 @@
+### Vagrantfile configration options
+
+vagrant:
+  version: '>= 1.1'
+  api_version: '2'
+
+ssh:
+  private_key_path: '/home/sri/.ssh/id_rsa'
+  public_key_path: '/home/sri/.ssh/id_rsa.pub'
+
+chef:
+  chef_version: '11.8.2'
+  cookbooks_path: 
+    - './cookbooks'
+    - './site-cookbooks'
+  roles_path: './roles'
+  data_bags_path: './data_bags'
+  encrypted_data_bag_secret_key_path: '/home/sri/.safe/chef/demo02/enckey'
+  role:
+    - 'base'
+    - 'db'
+    - 'web'
+    - 'app'
+
+base:
+  box: 'Berkshelf-CentOS-6.4-x86_64-minimal'
+  box_url: 'https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box'
+  hostname: 'c0001'
+
+virtualbox:
+  memsize: 1024
+  cpu_count: 1
+
+fusion:
+  memsize: 1024
+  cpu_count: 1
+
+rackspace:
+  username: ''
+  api_key: ''
+  region: 'lon'
+  flavor: '1 GB Performance'
+  image: 'CentOS 6.5'
+  disk_config: 'MANUAL'
+  key_name: 'demo-key'
+
