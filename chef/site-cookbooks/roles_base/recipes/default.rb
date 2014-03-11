@@ -58,7 +58,9 @@ include_recipe "rackspace_ntp::default"
 
 ### SSH
 node.default['rackspace_openssh']['config']['server']['x11_forwarding'] = 'no'
-node.default['rackspace_openssh']['config']['server']['Port'] = '3333'
+unless Chef::Config[:solo]
+  node.default['rackspace_openssh']['config']['server']['Port'] = '3333'
+end
 include_recipe "rackspace_openssh::default"
 
 
