@@ -70,3 +70,9 @@
 [submodule "chef/cookbooks/jenkins"]
 	path = chef/cookbooks/jenkins
 	url = https://github.com/opscode-cookbooks/jenkins
+[submodule "chef/cookbooks/apt"]
+	path = chef/cookbooks/apt
+	url = https://github.com/opscode-cookbooks/apt
+[submodule "chef/cookbooks/runit"]
+	path = chef/cookbooks/runit
+	url = https://github.com/hw-cookbooks/runit
