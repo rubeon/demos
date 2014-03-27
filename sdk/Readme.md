@@ -2,14 +2,14 @@
 Pyrax
 ======
 
-Install
+ * Install
 
 On Ubuntu: -
 ```
 sudo pip install pyrax
 ```
 
-Create  ~/pyrax.cfg
+ * Create  ~/pyrax.cfg
 
 ```
 [rackspace_cloud]
@@ -44,19 +44,19 @@ except pyrax.exc.AuthenticationFailed:
  * Start with example 1
 
 ```
-wget http://tty0.me/sxferh/pyrax-example1.py
+wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example1.py
 python pyrax-example1.py
 ```
 
   * Review example 2. This creates 3 servers and return credentials
 
 ```
-wget http://tty0.me/sxferh/pyrax-example2.py
+wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example2.py
 python pyrax-example2.py
 ```
 
 
-  * Review samples at https://github.com/rackspace/pyrax/tree/master/samples/cloudservers
+  * Review samples at https://github.com/rackspace/pyrax/tree/master/samples
 
 
 JClouds
@@ -67,7 +67,7 @@ JClouds
 ```
 mkdir -p /usr/local/java/
 cd /usr/local/java/
-wget http://c3fdc85d8f10b46c057a-4a7c6ed24e9f3add9b0486ca48ec12a1.r1.cf3.rackcdn.com/jdk-7u45-linux-x64.tar.gz
+wget http://c3fdc85d8f10b46c057a-4a7c6ed24e9f3add9b0486ca48ec12a1.r1.cf3.rackcdn.com/jdk-7u45-linux-x64.tar.gz'
 tar -zxvf jdk-7u45-linux-x64.tar.gz
 ln -s jdk1.7.0_45 current
 export JAVA_HOME=/usr/local/java/current
@@ -123,17 +123,13 @@ public static final String ZONE = System.getProperty("zone", "LON");
 
 ```
 cd /root/jclouds/
-
-javac -classpath ".:lib/*"  \
-org/jclouds/examples/rackspace/cloudservers/CloudServersPublish.java
+javac -classpath ".:lib/*" org/jclouds/examples/rackspace/cloudservers/CloudServersPublish.java
 
 ```
 
  * Run
 ```
-java -classpath ".:lib/*" \
-org.jclouds.examples.rackspace.cloudservers.CloudServersPublish \
- <cloud username> <cloud api key>
+java -classpath ".:lib/*" org.jclouds.examples.rackspace.cloudservers.CloudServersPublish <cloud username> <cloud api key>
 ```
 
 
