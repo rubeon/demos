@@ -10,7 +10,6 @@ sudo pip install pyrax
 ```
 
  * Create  ~/pyrax.cfg
-
 ```
 [rackspace_cloud]
 identity_type = rackspace
@@ -21,7 +20,7 @@ debug = False
 verify_ssl = True
 ```
 
-You can also inherit it from the environment variables.
+Note, you can also inherit it from the environment variables.
 
 ```
 # cloud auth data will be pulled from environment
@@ -42,14 +41,12 @@ except pyrax.exc.AuthenticationFailed:
 
 
  * Start with example 1
-
 ```
 wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example1.py
 python pyrax-example1.py
 ```
 
   * Review example 2. This creates 3 servers and return credentials
-
 ```
 wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example2.py
 python pyrax-example2.py
@@ -76,7 +73,6 @@ export PATH=$PATH:$JAVA_HOME/bin
 
 
  * Get Maven
-
 ```
 mkdir -p /usr/local/maven
 cd /usr/local/maven
@@ -91,7 +87,6 @@ export PATH=$PATH:$JAVA_HOME/bin:$M2
 
 
  * Get dependencies for jclouds
-
 ```
 mkdir /root/jclouds
 cd /root/jclouds
@@ -102,7 +97,6 @@ mvn dependency:copy-dependencies "-DoutputDirectory=./lib"
 
 
  * Now create an example
-
 ```
 mkdir -p org/jclouds/examples/rackspace/cloudservers/
 cd org/jclouds/examples/rackspace/cloudservers/
@@ -112,7 +106,6 @@ wget https://raw.github.com/jclouds/jclouds-examples/master/rackspace/src/main/j
 
 
  * Review the code. Edit org/jclouds/examples/rackspace/cloudservers/Constants.java and change provider to UK and ZONE/Region
-
 ```
 public static final String PROVIDER = System.getProperty("provider.cs", "rackspace-cloudservers-uk");
 public static final String ZONE = System.getProperty("zone", "LON");
@@ -120,11 +113,9 @@ public static final String ZONE = System.getProperty("zone", "LON");
 
 
  * Compile
-
 ```
 cd /root/jclouds/
 javac -classpath ".:lib/*" org/jclouds/examples/rackspace/cloudservers/CloudServersPublish.java
-
 ```
 
  * Run
