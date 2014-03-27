@@ -67,3 +67,6 @@
 [submodule "chef/cookbooks/chef_handler"]
 	path = chef/cookbooks/chef_handler
 	url = https://github.com/opscode-cookbooks/chef_handler
+[submodule "chef/cookbooks/jenkins"]
+	path = chef/cookbooks/jenkins
+	url = https://github.com/opscode-cookbooks/jenkins
