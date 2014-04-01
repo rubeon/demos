@@ -76,3 +76,12 @@
 [submodule "chef/cookbooks/runit"]
 	path = chef/cookbooks/runit
 	url = https://github.com/hw-cookbooks/runit
+[submodule "chef/cookbooks/yum-epel"]
+	path = chef/cookbooks/yum-epel
+	url = https://github.com/opscode-cookbooks/yum-epel
+[submodule "chef/cookbooks/yum"]
+	path = chef/cookbooks/yum
+	url = https://github.com/opscode-cookbooks/yum
+[submodule "chef/cookbooks/build-essential"]
+	path = chef/cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential
