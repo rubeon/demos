@@ -1,6 +1,6 @@
 
 Simple Demo
-=============
+========
 
  * Spin up a '2 vCPU(s), 7 GB RAM, 1.4 TB Disk' cluster in Rackspace public cloud
 
@@ -99,4 +99,4 @@ hadoop dfs -cat /user/demo/wc/results/part-00000 |sort -gk 2
 ```
 
 A more complex demo
-=============
+========
