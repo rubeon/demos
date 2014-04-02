@@ -1,6 +1,6 @@
 
 Simple Demo
-========
+=====
 
  * Spin up a '2 vCPU(s), 7 GB RAM, 1.4 TB Disk' cluster in Rackspace public cloud
 
@@ -98,5 +98,65 @@ hadoop dfs -cat /user/demo/wc/results/part-00000
 hadoop dfs -cat /user/demo/wc/results/part-00000 |sort -gk 2
 ```
 
-A more complex demo
-========
+Pig example
+=====
+
+ * Install pig
+```
+wget http://mirror.catn.com/pub/apache/pig/pig-0.12.0/pig-0.12.0.tar.gz
+tar zxvf pig-0.12.0.tar.gz
+export PATH=$PATH:~/pig/bin
+```
+
+ * Download some test data. Data is the City table from mysql's world sample database.
+
+```
+mkdir city
+wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/input/city.csv
+```
+
+ * Load data in HDFS
+```
+hadoop dfs -rmr /user/demo/city
+hadoop dfs -mkdir city
+hadoop dfs -copyFromLocal city.csv city/city.csv
+```
+
+ * Start pig 
+```
+pig
+```
+
+ * Run the following pig commands to load data
+```
+city = LOAD '/user/demo/city/city.csv' USING PigStorage(',') as (id,name,country_code,district,population);
+DUMP city;
+```
+
+ * Now run some queries
+```
+pop_greater_than_10000 = FILTER city by population>10000;
+dump pop_greater_than_10000;
+```
+
+ * To view more details of the execution use
+
+```
+ILLUSTRATE pop_greater_than_10000;
+```
+
+ * Another example with Order 
+
+```
+pop_asc = ORDER city by population DESC;
+DUMP pop_asc;
+```
+
+
+More complex examples
+=====
+TODO :
+ * Write to MySQL
+ * Parse network data
+ * Other cool stuff
+
