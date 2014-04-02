@@ -26,10 +26,13 @@ node.default['java']['java_home'] = "/usr/local/java/default"
 include_recipe "java"
 
 node.default['jenkins']['master']['install_method'] = "package"
-include_recipe "jenkins"
+include_recipe "jenkins::master"
 
 # Create password credentials
 jenkins_password_credentials 'wcoyote' do
   description 'Wile E Coyote'
   password    'beepbeep123456'
 end
+
+add_iptables_rule('INPUT', '-s 0.0.0.0 -p tcp --dport 8080 -j ACCEPT')
+
