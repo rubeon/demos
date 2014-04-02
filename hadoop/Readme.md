@@ -1,5 +1,4 @@
 
-
 Simple Demo
 =============
 
@@ -13,6 +12,7 @@ Simple Demo
 rm -rf /home/demo/wc
 hadoop dfs -rmr /user/demo/wc
 hadoop dfs -mkdir wc
+
 ```
 
 
@@ -29,6 +29,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/
 wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/mapper1.py
 wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/reducer2.py
 wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/mapper2.py
+
 ```
 
  * reducer1.py & mapper1.py are generic python scripts which will work anywhere. Even outside Hadoop.
@@ -38,20 +39,24 @@ wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/
 
  * Copy stuff to the Hadoop file system
 ``` 
+
 cd /home/demo/wc
 hadoop dfs -copyFromLocal book1.txt wc/book1.txt 
-hadoop dfs -copyFromLocal book1.txt wc/book2.txt
-hadoop dfs -copyFromLocal book1.txt wc/books.txt 
+hadoop dfs -copyFromLocal book2.txt wc/book2.txt
+hadoop dfs -copyFromLocal books.txt wc/books.txt 
 hadoop dfs -ls wc
+
 ```
 
  * Run the job with book1.txt and mapper1. Output is the folder name.
 
 ```
+
 hadoop jar /usr/lib/hadoop/contrib/streaming/hadoop-*streaming*.jar \
 -file /home/demo/wc/mapper1.py    -mapper /home/demo/wc/mapper1.py \
 -file /home/demo/wc/reducer1.py   -reducer /home/demo/wc/reducer1.py \
 -input /user/demo/wc/book1.txt -output /user/demo/wc/results
+
 ```
 
  * Execution will end with the output file being created.
@@ -78,10 +83,12 @@ hadoop dfs -rmr wc/results
 
  * Test with the bigger files
 ```
+
 hadoop jar /usr/lib/hadoop/contrib/streaming/hadoop-*streaming*.jar \
 -file /home/demo/wc/mapper2.py    -mapper /home/demo/wc/mapper2.py \
 -file /home/demo/wc/reducer2.py   -reducer /home/demo/wc/reducer2.py \
 -input /user/demo/wc/books.txt -output /user/demo/wc/results
+
 ```
 
  * View results
@@ -90,3 +97,6 @@ hadoop dfs -ls wc/results
 hadoop dfs -cat /user/demo/wc/results/part-00000
 hadoop dfs -cat /user/demo/wc/results/part-00000 |sort -gk 2
 ```
+
+A more complex demo
+=============
