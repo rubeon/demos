@@ -1,12 +1,12 @@
 
-Ansible demo
-=====
+# Ansible demo
+
 
 Demonstrates the use of Ansible to configure common things. This is similar to the Chef demo
 
 
-**Ansible and RAX setup **
-====
+## Ansible and RAX setup
+
 
  * Create a ansible home dir and an inventory dir
 
@@ -55,7 +55,7 @@ cd ansible\inventory
 ansible all -i inventory/ -m setup
 ```
 
-Reference
-====
+## Reference
+
 
 http://docs.ansible.com/guide_rax.html
