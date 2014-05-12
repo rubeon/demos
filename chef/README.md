@@ -65,9 +65,9 @@ knife cookbook upload -a
 
  * Build a server with DB role
 ```
-knife rackspace server create  \
- --server-name websiteone_db \
- --node-name websiteone_db \
+servername=websiteone_web01; knife rackspace server create  \
+ --server-name $servername \
+ --node-name $servername \
  --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 \
  --flavor  performance1-1 \
  --rackspace-region lon  \
@@ -77,9 +77,9 @@ knife rackspace server create  \
 
  * Build a server with web role
 ```
-knife rackspace server create  \
- --server-name websiteone_web01 \
- --node-name websiteone_web01 \
+servername=websiteone_web01; knife rackspace server create  \
+ --server-name $servername \
+ --node-name $servername \
  --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 \
  --flavor  performance1-1 \
  --rackspace-region lon  \
@@ -96,9 +96,9 @@ knife rackspace server create  \
 
  * [Optional] - Build a server with web app role
 ```
-knife rackspace server create  \
- --server-name websiteone_web01 \
- --node-name websiteone_web01 \
+servername=websiteone_webapp01; knife rackspace server create  \
+ --server-name $servername \
+ --node-name $servername \
  --image f70ed7c7-b42e-4d77-83d8-40fa29825b85 \
  --flavor  performance1-1 \
  --rackspace-region lon  \

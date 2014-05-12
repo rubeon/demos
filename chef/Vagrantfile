@@ -81,8 +81,8 @@ Vagrant.configure(vconf['vagrant']['api_version']) do |config|
     rs.flavor = /#{vconf['rackspace']['flavor']}/
     rs.image = /#{vconf['rackspace']['image']}/
     rs.disk_config = vconf['rackspace']['disk_config']
-    rs.public_key_path = vconf['ssh']['public_key_path']
-    config.ssh.private_key_path = vconf['ssh']['private_key_path']
+    #rs.public_key_path = vconf['ssh']['public_key_path']
+    #config.ssh.private_key_path = vconf['ssh']['private_key_path']
     config.ssh.pty = true
   end
 end
