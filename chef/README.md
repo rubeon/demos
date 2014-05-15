@@ -26,7 +26,7 @@ Demonstrates the use of chef to configure common things.   Base role does the us
   * Deployed a sample database
 
 
-Using knife
+Populate the Chef Server
 =====
 
  * Clone the demo repo
