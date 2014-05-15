@@ -139,3 +139,27 @@ vagrant up --provider rackspace
 export VAGRANT_LOG=debug
 ```
 
+```
+
+If you are getting this on Vagrant 4.3.10
+
+```
+Shared folders that Chef requires are missing on the virtual machine.
+This is usually due to configuration changing after already booting the
+machine. The fix is to run a `vagrant reload` so that the proper shared
+folders will be prepared and mounted on the VM.
+```
+Read this https://github.com/mitchellh/vagrant/issues/3341
+
+Quick fix :-
+```
+vagrant ssh
+#32 bit boxes. replace with the current path for Guest additions
+sudo ln -s -f /opt/VBoxGuestAdditions-4.2.12/lib/VBoxGuestAdditions/ /usr/lib/VBoxGuestAdditions
+#64 bit
+sudo ln -s -f /opt/VBoxGuestAdditions-4.2.12/lib/VBoxGuestAdditions/ /usr/lib64/VBoxGuestAdditions
+```
+
+
+
+
