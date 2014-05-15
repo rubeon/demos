@@ -1,0 +1,9 @@
+New-Item -Path c:\test3 -ItemType directory
+ 
+$objOu = [ADSI]"WinNT://wintest"
+$objUser = $objOU.Create("User", "demo")
+$objUser.setpassword("1QAz2WSx3EDc4RFv")
+$objUser.SetInfo()
+$objUser.description = "Demo user"
+$objUser.SetInfo()
+

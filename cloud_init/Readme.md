@@ -33,3 +33,16 @@ On Rackspace cloud using Ubuntu 13.10 (Saucy Salamander) (PVHVM)  image :-
 ```
 nova boot --config-drive=true --user-data=cloudinit.ubuntu.tools --image=2ab974de-9fe5-4f5b-9d58-766a59f3de61 --flavor=performance1-1 c0004
 ```
+
+Cloudbaseinit - Windows
+====
+[INCOMPLETE-TODO]
+See http://www.cloudbase.it/cloud-init-for-windows-instances/ or https://github.com/cloudbase/cloudbase-init for more details on cloudbase-init
+
+
+ * Start with base Windows server. In this case we are doing Windows 2012
+
+ * Install Cloud Base init on it
+
+ * Create a new image from this server
+
