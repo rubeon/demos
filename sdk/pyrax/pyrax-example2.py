@@ -15,6 +15,12 @@ from pprint import pformat
 
 import pyrax
 
+# cloud auth data will be pulled from environment
+OS_USERNAME = os.environ['OS_USERNAME']
+OS_PASSWORD = os.environ['OS_PASSWORD']
+OS_REGION_NAME = os.environ['OS_REGION_NAME'].upper()
+OS_AUTH_URL = os.environ['OS_AUTH_URL']
+
 DEBUG = 0
 PROGRAM_NAME="example2.py"
 SERVER_REGION="LON"
@@ -22,7 +28,6 @@ IMAGE_ID="f70ed7c7-b42e-4d77-83d8-40fa29825b85" #Centos 6.4
 FLAVOR_ID="performance1-1"
 SERVER_STRING="myapp"
 NUM_SERVERS=3
-PYRAX_CFG="pyrax.cfg"
 SLEEP_TIME=30 #sec
 MAX_TIMEOUT=5 #min
 
@@ -42,9 +47,15 @@ class example2:
   max_time=MAX_TIMEOUT
   
   def __init__ (self, MAX_SERVERS=None):
-    conf = os.path.expanduser(PYRAX_CFG)
-    pyrax.settings.set('identity_type', 'rackspace')
-    pyrax.set_credential_file(conf, SERVER_REGION)
+    pyrax.set_setting("identity_type", "rackspace")
+    pyrax.set_setting("region", OS_REGION_NAME)
+    try:
+      pyrax.set_credentials(OS_USERNAME,
+                          OS_PASSWORD,
+                          region=OS_REGION_NAME)
+    except pyrax.exc.AuthenticationFailed:
+      print " ".join(["Pyrax auth failed using", config.cloud_user])
+
     self.cs = pyrax.cloudservers
   
     if MAX_SERVERS is not None :

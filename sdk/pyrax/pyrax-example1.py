@@ -19,9 +19,22 @@
 import os
 import pyrax
 
+# cloud auth data will be pulled from environment
+OS_USERNAME = os.environ['OS_USERNAME']
+OS_PASSWORD = os.environ['OS_PASSWORD']
+OS_REGION_NAME = os.environ['OS_REGION_NAME'].upper()
+OS_AUTH_URL = os.environ['OS_AUTH_URL']
+
+
 pyrax.set_setting("identity_type", "rackspace")
-creds_file = os.path.expanduser("~/pyrax.cfg")
-pyrax.set_credential_file(creds_file)
+pyrax.set_setting("region", OS_REGION_NAME)
+try:
+    pyrax.set_credentials(OS_USERNAME,
+                          OS_PASSWORD,
+                          region=OS_REGION_NAME)
+except pyrax.exc.AuthenticationFailed:
+    print " ".join(["Pyrax auth failed using", config.cloud_user])
+
 cs = pyrax.connect_to_cloudservers(region="LON")
 
 flvs = cs.flavors.list()
