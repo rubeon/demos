@@ -4,7 +4,6 @@ Pyrax
 
  * Install
 
-On Ubuntu: -
 ```
 sudo pip install pyrax
 ```
@@ -127,5 +126,6 @@ java -classpath ".:lib/*" org.jclouds.examples.rackspace.cloudservers.CloudServe
  * Review other examples at http://jclouds.apache.org/documentation/quickstart/rackspace/
 
 
-
+libcloud
+======
 
