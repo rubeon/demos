@@ -43,12 +43,16 @@ except pyrax.exc.AuthenticationFailed:
 ```
 wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example1.py
 python pyrax-example1.py
+
+python pyrax-example1.py
 ```
 
   * Review example 2. This creates 3 servers and return credentials
 ```
 wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example2.py
 python pyrax-example2.py
+
+python pyrax-example2.py -d
 ```
 
 
@@ -119,7 +123,7 @@ javac -classpath ".:lib/*" org/jclouds/examples/rackspace/cloudservers/CloudServ
 
  * Run
 ```
-java -classpath ".:lib/*" org.jclouds.examples.rackspace.cloudservers.CloudServersPublish <cloud username> <cloud api key>
+java -classpath ".:lib/*" org.jclouds.examples.rackspace.cloudservers.CloudServersPublish $OS_USERNAME $OS_PASSWORD
 ```
 
 
