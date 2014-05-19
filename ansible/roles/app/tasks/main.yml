@@ -1,0 +1,6 @@
+---
+
+# Default packages
+- include: java.yml
+- include: jboss.yml
+- include: deploy_app.yml

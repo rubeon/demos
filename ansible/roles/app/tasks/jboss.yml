@@ -1,0 +1,49 @@
+
+- name: Jboss - Add jboss group
+  group: name={{jboss_group}} state=present
+
+- name: Jboss - Add jboss user
+  user: name={{jboss_user}} groups={{jboss_group}}
+
+
+- name: Jboss - Add jboss dir
+  action: file path={{jboss_root}} state=directory recurse=yes
+
+- name: Jboss - Check if path exists
+  stat: path={{jboss_root}}/{{ jboss_version_folder }}
+  register: check_jboss_installed
+
+- name: Jboss - Download jboss tar ball
+  get_url: url="{{jboss_url_root}}/{{jboss_url_filename}}"
+           dest="{{jboss_root}}/{{jboss_url_filename}}"
+           sha256sum=3a8ee8e3ab10003a5330e27d87e5ba38b90fbf8d6132055af4dd9a288d459bb7
+  when: check_jboss_installed.stat.exists == false
+
+- name: Jboss - Unarchive jboss tar ball
+  shell: tar -zxf  "{{jboss_root}}/{{jboss_url_filename}}" -C "{{jboss_root}}"
+  when: check_jboss_installed.stat.exists == false
+
+- name: Jboss - Check if path exists
+  stat: path={{jboss_root}}/{{ jboss_version_folder }}
+  register: check_jboss_installed
+
+- name: Jboss - Change owner and group of install dir
+  shell: chown -R {{jboss_user}}:{{jboss_group}} {{jboss_home}}
+  when: check_jboss_installed.stat.exists == true
+
+- name: Jboss - Create link
+  file: src={{jboss_root}}/{{jboss_version_folder}} dest={{jboss_home}} state=link 
+
+- name: Jboss - Install Init script
+  template: src=jboss_init.sh dest=/etc/init.d/jboss mode=0755 owner=root group=root
+
+- name: Jboss - Install standalone conf
+  template: src=standalone.conf dest={{jboss_home}}/standalone/configuration/standalone.conf mode=0655 
+            owner={{jboss_user}} group={{jboss_group}}
+
+- name: Jboss - Install standalone conf
+  template: src=standalone.sh dest={{jboss_home}}/bin/standalone.sh mode=0755 
+            owner={{jboss_user}} group={{jboss_group}}
+
+- name: Jboss - Start service
+  service: name=jboss state=restarted enabled=yes

@@ -1,0 +1,13 @@
+
+
+- name: Download application wars
+  get_url: url="{{website_one.jboss_app_url_root.value}}/{{item}}" 
+           dest="{{jboss_home}}/{{website_one.jboss_webapps_dir.value}}/{{item}}"
+  with_items: ${website_one.jboss_app_wars.value}
+
+- name: Change ownership of application wars
+  shell: chown {{jboss_user}}:{{jboss_group}} {{jboss_home}}/{{website_one.jboss_webapps_dir.value}}/{{item}}
+  with_items: ${website_one.jboss_app_wars.value}
+
+- name: Jboss - Start service
+  service: name=jboss state=restarted enabled=yes
