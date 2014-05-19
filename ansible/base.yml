@@ -1,0 +1,5 @@
+# file: site.yml
+- name: Apply base role
+  hosts: all
+  roles:
+    - base

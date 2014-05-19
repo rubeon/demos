@@ -1,0 +1,22 @@
+---
+
+  - name: Create website directory
+    action: file path={{website_one.site_root.value}} state=directory recurse=yes 
+            owner={{website_one.owner.value}} 
+            group={{website_one.group.value}}
+
+  - name: Download website tar ball
+    get_url: url="{{website_one.site_remote_url_root.value}}/{{website_one.site_remote_filename.value}}"
+             dest={{website_one.site_root.value}}
+             sha256sum={{website_one.site_remote_file_sha256.value}}
+
+  - name: Check if site is installed
+    stat: path="{{website_one.site_root.value}}/{{website_one.site_name.value}}"
+    register: check_websiteone_installed
+
+  - name: Unarchive site file
+    shell: tar -zxf  "{{website_one.site_root.value}}/{{website_one.site_remote_filename.value}}" -C "{{website_one.site_root.value}}/"
+    when: check_websiteone_installed.stat.exists == false
+
+  - name: Copy db conf file
+    template: src=db.conf dest="{{website_one.site_db_conf.value}}"

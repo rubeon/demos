@@ -1,0 +1,5 @@
+---
+
+# Default packages
+- include: apache.yml
+- include: deploy_site.yml

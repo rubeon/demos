@@ -1,0 +1,11 @@
+---
+
+- name: Configure Iptables
+  lineinfile: dest=/etc/sysconfig/iptables
+              regexp="^-A INPUT -p {{item.value.protocol}} -m {{item.value.protocol}} --dport {{item.value.port}} -s {{item.value.src}} -j ACCEPT$"
+              line="-A INPUT -p {{item.value.protocol}} -m {{item.value.protocol}} --dport {{item.value.port}} -s {{item.value.src}} -j ACCEPT"
+              insertafter="^:OUTPUT ACCEPT \[\d*:\d*\]$"
+  with_dict: base_iptables_list
+
+- name: Restart iptables
+  service: name=iptables state=restarted

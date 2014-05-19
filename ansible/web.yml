@@ -1,0 +1,6 @@
+---
+- name: Deploy web role
+  hosts: web
+  roles:
+      - web
+

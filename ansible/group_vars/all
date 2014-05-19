@@ -1,0 +1,71 @@
+
+base_packages: ['nc', 'screen', 'strace','tcpdump', 'mlocate' , 'lsof', 'sysstat', 'iotop']
+
+base_groups:
+  sysadmins:
+    id: 2000
+  dba:
+    id: 2001
+  logviewers:
+    id: 2002
+
+base_users:
+  sri:
+    name: Sri Rajan
+    shell: /bin/bash
+    groups: sysadmins
+  calvin:
+    name: calvin
+    shell: /bin/bash
+    groups: sysadmins,dba
+  hobbs:
+    name: hobbs
+    shell: /bin/bash
+    groups: 
+
+base_iptables_list:
+  allow_port_80:
+    protocol: tcp
+    port: 80
+    src: 0.0.0.0/0
+
+base_sysadmin_group: 'sysadmins'
+
+
+base_sysctl_values:
+  vm.swappiness:
+    value: 5
+
+
+apache_listen_addr: '*'
+apache_listen_http_port: 80
+apache_listen_https_port: 443
+
+web_packages: ['httpd', 'mod_ssl', 'mod_wsgi', 'php', 'mod_php', 'php-mysql']
+
+website_one:
+ site_name:
+    value: one.example.com
+ owner:
+    value: apache
+ group:
+    value: apache
+ site_root:
+    value: /srv/www
+ site_remote_url_root:
+    value: https://github.com/bigcloudsolutions/demos/raw/master/demo-sites
+ site_remote_filename:
+    value: one.example.com.tar.gz
+ site_remote_file_sha256:
+    value: d725bc22147e21ab73947b624b4a491730a0e960b719b6283c206d03630dba07
+ db_host:
+    value: 10.181.74.126
+ db_user:
+    value: app
+ db_name:
+    value: world
+ db_password:
+    value: 131D40djdFF4ddkf55G
+ site_db_conf:
+    value: /srv/www/one.example.com.db.php
+

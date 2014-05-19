@@ -1,0 +1,12 @@
+---
+
+- name: Install Web packages
+  yum: name={{ item }} state=installed
+  with_items: web_packages
+
+- name: Copy httpd virtual host
+  template: src=website.one.conf dest=/etc/httpd/conf.d/website.one.conf
+
+- name: Start httpd and enable it
+  service: name=httpd state=restarted enabled=yes
+

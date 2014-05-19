@@ -1,0 +1,12 @@
+---
+
+- name: Add sysadmin group
+  group: name={{item.key}} state=present
+  with_dict: base_groups
+
+
+- name: Add Users
+  user: name={{item.key}} shell={{item.value.shell}} groups={{item.value.groups}}
+  with_dict: base_users
+ 
+
