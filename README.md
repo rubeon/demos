@@ -4,6 +4,8 @@ This repo contains different examples using the Cloud APIs and Chef.
 
 chef - Chef repo used in the demo
 
+ansible - Ansible examples
+
 demo-sites - Example site code used in Chef cookbooks etc
 
 jboss_webapps - Example Java apps
