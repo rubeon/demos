@@ -1,4 +1,7 @@
 ---
+- name: Get facts from db
+  hosts: db
+
 - name: Deploy web role
   hosts: web
   roles:
