@@ -28,7 +28,7 @@
   register: check_jboss_installed
 
 - name: Jboss - Change owner and group of install dir
-  shell: chown -R {{jboss_user}}:{{jboss_group}} {{jboss_home}}
+  shell: chown -R {{jboss_user}}:{{jboss_group}} {{jboss_root}}/{{jboss_version_folder}}
   when: check_jboss_installed.stat.exists == true
 
 - name: Jboss - Create link
