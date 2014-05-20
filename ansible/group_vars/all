@@ -31,17 +31,43 @@ base_iptables_list:
 
 base_sysadmin_group: 'sysadmins'
 
-
 base_sysctl_values:
   vm.swappiness:
     value: 5
 
+web_packages: ['httpd', 'mod_ssl', 'mod_wsgi', 'php', 'mod_php', 'php-mysql']
 
+db_packages: ['mysql-server', 'MySQL-python']
+
+## Apache
 apache_listen_addr: '*'
 apache_listen_http_port: 80
 apache_listen_https_port: 443
 
-web_packages: ['httpd', 'mod_ssl', 'mod_wsgi', 'php', 'mod_php', 'php-mysql']
+## Java
+java_url_root: 'http://c3fdc85d8f10b46c057a-4a7c6ed24e9f3add9b0486ca48ec12a1.r1.cf3.rackcdn.com/'
+java_url_filename: 'jdk-7u45-linux-x64.tar.gz'
+java_version_folder: 'jdk1.7.0_45'
+java_url_filename_sha256: 'f2eae4d81c69dfa79d02466d1cb34db2b628815731ffc36e9b98f96f46f94b1a'
+java_root: '/usr/java'
+java_home: '/usr/java/current'
+
+## Jboss
+jboss_user: 'jboss'
+jboss_group: 'jboss'
+jboss_user_home: '/home/jboss'
+jboss_home: '/srv/jboss/current'
+jboss_root: '/srv/jboss'
+jboss_instance: 'default'
+jboss_url_root: 'http://ca05e8171724524c805e-f85013b2b105db9295d244236b43548b.r11.cf3.rackcdn.com/'
+jboss_url_filename: 'jboss-as-7.1.0.Final.tar.gz'
+jboss_url_filename_sha256: ''
+jboss_version_folder: 'jboss-as-7.1.0.Final'
+jboss_config: 'standalone'
+jboss_script': 'standalone.sh'
+jboss_java_home: '/usr/java/default'
+jboss_http_port: 8080
+
 
 website_one:
  site_name:
@@ -68,4 +94,15 @@ website_one:
     value: 131D40djdFF4ddkf55G
  site_db_conf:
     value: /srv/www/one.example.com.db.php
-
+ jboss_app_url_root: 
+    value: 'https://github.com/bigcloudsolutions/demos/raw/master/jboss_webapps'
+ jboss_app_wars:
+    value: [ 'jboss-helloworld.war', 'jboss-numberguess.war']
+ jboss_webapps_dir:
+    value: 'standalone/deployments/'
+ db_remote_url_root:
+    value: 'http://ca05e8171724524c805e-f85013b2b105db9295d244236b43548b.r11.cf3.rackcdn.com'
+ db_name: 
+    value: 'world'
+ db_sql_file:
+    value: 'world_innodb.sql'
