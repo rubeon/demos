@@ -1,0 +1,21 @@
+
+- name: Install Web packages
+  yum: name={{ item }} state=installed
+  with_items: db_packages
+
+- name: Start mysql and enable it
+  service: name=mysqld state=started enabled=yes
+
+- name: Download db files
+  get_url: url="{{website_one.db_remote_url_root.value}}/{{website_one.db_sql_file.value}}" 
+           dest="/root/{{website_one.db_sql_file.value}}"
+
+- name: Create mysql database
+  mysql_db: name={{website_one.db_name.value}} state=present
+
+- name: Import mysql file 
+  mysql_db: name={{website_one.db_name.value}} state=import target=/root/{{website_one.db_sql_file.value}}
+
+- name: Create mysql user
+  mysql_user: name={{website_one.db_user.value}} password={{website_one.db_password.value}} 
+              priv={{website_one.db_name.value}}.*:ALL state=present
