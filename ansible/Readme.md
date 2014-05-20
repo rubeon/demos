@@ -1,6 +1,6 @@
 
-# Ansible demo
-
+Ansible demo
+=====
 
 Demonstrates the use of Ansible to configure common things. This is similar to the Chef demo
 
@@ -23,9 +23,68 @@ Demonstrates the use of Ansible to configure common things. This is similar to t
   * Install MySQL database
   * Deployed a sample database
 
+Running the demo
+=====
+ * Clone the repo
 
-## Ansible and RAX setup
+ * Get some servers on Rackspace cloud or anywhere. Ideally we need 2 and the db one needs to be named website-one-db01 as we use it in the plays to get IPs etc. Make sure you can login to the servers with ssh keys.
 
+ * Create an inventory file.
+
+```
+[web]
+website-one-web01 ansible_ssh_host=162.13.187.100 ansible_ssh_user=root
+
+[app]
+website-one-web01 ansible_ssh_host=162.13.187.100 ansible_ssh_user=root
+
+[db]
+website-one-db01 ansible_ssh_host=134.213.50.179 ansible_ssh_user=root
+``` 
+
+ * Run a test make sure you can reach them
+```
+ansible -i inventory_test -m ping all
+```
+
+ * Run the base playbook
+```
+ansible-playbook -i inventory_test -c paramiko base.yml
+```
+
+ * Now run the db playbook
+```
+ansible-playbook -i inventory_test  -c paramiko db.yml
+```
+
+ * Run the web and app playbooks
+
+```
+ansible-playbook -i inventory_test  -c paramiko web.yml
+ansible-playbook -i inventory_test  -c paramiko app.yml
+```
+
+* Test the IP of the web node. This will be running a PHP website
+```
+/
+/world.php
+/world-view.php
+```
+
+* Test the IP of the web node. This will be running a Java app
+```
+/guess/
+/helloworld/
+```
+
+
+Using Vagrant
+=====
+TODO
+
+
+Ansible and RAX setup
+=====
 
  * Create a ansible home dir and an inventory dir
 
@@ -78,13 +137,18 @@ ansible localhost -m rax -a "name=test_web01 flavor=performance1-1 image=042395f
 
 
 Troubleshooting
+=====
+
+ * Set this to leave the scripts on servers
+
 ANSIBLE_KEEP_REMOTE_FILES=1
 
 
-List variables
+ * List variables
+```
 ansible -m setup test -i inventory
+```
 
-## References
-
-
+References
+=====
 http://docs.ansible.com/guide_rax.html
