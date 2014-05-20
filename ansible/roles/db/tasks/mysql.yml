@@ -17,5 +17,18 @@
   mysql_db: name={{website_one.db_name.value}} state=import target=/root/{{website_one.db_sql_file.value}}
 
 - name: Create mysql user
-  mysql_user: name={{website_one.db_user.value}} password={{website_one.db_password.value}} 
-              priv={{website_one.db_name.value}}.*:ALL state=present
+  mysql_user: name={{website_one.db_user.value}} 
+              password={{website_one.db_password.value}} 
+              priv={{website_one.db_name.value}}.*:ALL 
+              host=%
+              state=present
+
+- name: Configure Iptables for mysql
+  lineinfile: dest=/etc/sysconfig/iptables
+              regexp="^-A INPUT -p {{item.value.protocol}} -m {{item.value.protocol}} --dport {{item.value.port}} -s {{item.value.src}} -j ACCEPT$"
+              line="-A INPUT -p {{item.value.protocol}} -m {{item.value.protocol}} --dport {{item.value.port}} -s {{item.value.src}} -j ACCEPT"
+              insertafter="^:OUTPUT ACCEPT \[\d*:\d*\]$"
+  with_dict: db_iptables_list
+
+- name: Restart iptables
+  service: name=iptables state=restarted
