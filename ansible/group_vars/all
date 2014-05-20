@@ -23,11 +23,19 @@ base_users:
     shell: /bin/bash
     groups: 
 
+
 base_iptables_list:
   allow_port_80:
     protocol: tcp
     port: 80
     src: 0.0.0.0/0
+
+db_iptables_list:
+  allow_port_3306:
+    protocol: tcp
+    port: 3306
+    src: 0.0.0.0/0
+
 
 base_sysadmin_group: 'sysadmins'
 
@@ -85,7 +93,7 @@ website_one:
  site_remote_file_sha256:
     value: d725bc22147e21ab73947b624b4a491730a0e960b719b6283c206d03630dba07
  db_host:
-    value: 10.181.74.126
+    value: 10.181.136.112 
  db_user:
     value: app
  db_name:
