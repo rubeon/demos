@@ -118,7 +118,7 @@ api_key =
 
  * Set the environment
 ```
-export RAX_CREDS_FILE=/Users/sri/data/rack/git/bigcloudsolutions/demos/ansible/creds_pyrax
+export RAX_CREDS_FILE=/Users/sri/data/rack/git/RackspaceDevOps/demos/ansible/creds_pyrax
 export RAX_REGION=lon
 ```
 

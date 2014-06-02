@@ -25,10 +25,10 @@ cd wc
 wget -O book1.txt  http://www.gutenberg.org/cache/epub/5000/pg5000.txt
 wget -O book2.txt  http://www.gutenberg.org/cache/epub/1661/pg1661.txt
 cat book1.txt book2.txt > books.txt
-wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/reducer1.py
-wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/mapper1.py
-wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/reducer2.py
-wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/mapper2.py
+wget --no-check-certificate https://raw.githubusercontent.com/RackspaceDevOps/demos/master/hadoop/reducer1.py
+wget --no-check-certificate https://raw.githubusercontent.com/RackspaceDevOps/demos/master/hadoop/mapper1.py
+wget --no-check-certificate https://raw.githubusercontent.com/RackspaceDevOps/demos/master/hadoop/reducer2.py
+wget --no-check-certificate https://raw.githubusercontent.com/RackspaceDevOps/demos/master/hadoop/mapper2.py
 
 ```
 
@@ -112,7 +112,7 @@ export PATH=$PATH:~/pig/bin
 
 ```
 mkdir city
-wget --no-check-certificate https://raw.githubusercontent.com/bigcloudsolutions/demos/master/hadoop/input/city.csv
+wget --no-check-certificate https://raw.githubusercontent.com/RackspaceDevOps/demos/master/hadoop/input/city.csv
 ```
 
  * Load data in HDFS

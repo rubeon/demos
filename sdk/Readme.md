@@ -41,7 +41,7 @@ except pyrax.exc.AuthenticationFailed:
 
  * Start with example 1
 ```
-wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example1.py
+wget https://raw.githubusercontent.com/RackspaceDevOps/demos/master/sdk/pyrax/pyrax-example1.py
 python pyrax-example1.py
 
 python pyrax-example1.py
@@ -49,7 +49,7 @@ python pyrax-example1.py
 
   * Review example 2. This creates 3 servers and return credentials
 ```
-wget https://raw.githubusercontent.com/bigcloudsolutions/demos/master/sdk/pyrax/pyrax-example2.py
+wget https://raw.githubusercontent.com/RackspaceDevOps/demos/master/sdk/pyrax/pyrax-example2.py
 python pyrax-example2.py
 
 python pyrax-example2.py -d
