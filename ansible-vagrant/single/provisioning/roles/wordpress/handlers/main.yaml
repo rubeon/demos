@@ -1,0 +1,9 @@
+---
+
+- name: Enable wordpress
+  action: command a2ensite wordpress-apache
+
+- name: Restart apache
+  action: service name=apache2 state=restarted
+  
+ 

@@ -1,0 +1,15 @@
+Tasks performed to install wordpress 
+---
+
+- name: Install Wordpress
+  apt: pkg=wordpress state=installed update_cache=true
+  
+- name: Copy Wordpress Config File
+  template: src=wp-config.php dest=/etc/wordpress/config-{{ website_host }}.php owner=www-data mode=600
+  notify:
+   - Enable wordpress
+   - Restart apache
+ 
+
+
+  

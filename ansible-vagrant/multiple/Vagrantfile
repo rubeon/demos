@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "centos64"
+
+
+  config.vm.define 'machine2' do |machine|
+    machine.vm.hostname = 'machine2'
+    machine.vm.network "private_network", ip: "192.168.77.22"
+  end
+
+  config.vm.define 'machine1' do |machine|
+    machine.vm.hostname = 'machine1'
+    machine.vm.network "private_network", ip: "192.168.77.21"
+    
+    # putting the ansible stanza inside this VM tricks vagrant's outside-in ordering into 
+    # running this last.
+
+    config.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/ntp.yml"
+      ansible.sudo = true
+      # the following line tells ansible to run the provisioner against
+      # all machines in the inventory file; default filter is the current config.vm
+      ansible.limit = 'all'
+    end
+    
+    
+  end
+
+end
